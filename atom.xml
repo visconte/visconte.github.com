@@ -10,14 +10,14 @@ layout: nil
   <updated>{{site.time | date_to_xmlschema }}</updated>
   <id>http://visconte.github.com</id>
   <author>
-    <name>Владимир Иванов</name>
+    <name>visconte</name>
     <email></email>
   </author>
 
   {% for post in site.posts %}
   <entry>
     <title>{{ post.title }}</title>
-    <link href="http://visconte.github.com{{ post.title }}"/>
+    <link href="http://visconte.github.com{{ post.url }}"/>
     <updated>{{post.date | date_to_xmlschema }}</updated>
     <id>http://visconte.github.com{{ post.id }}</id>
     <content type="html">{{ post.content | xml_escape }}</content>
