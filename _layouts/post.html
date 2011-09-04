@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div id="post">
+  <h2> {{page.title}} </h2>
+  <p class="meta"> {{page.date | date_to_string}} </p>
+  {{content}}
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-en-US.js"></script>
+<script type="text/javascript" src="http://github.github.com/github-flavored-markdown/scripts/showdown.js"></script>
+
+<div id="comments">
+  <h2>Отправить комментарий</h2>
+  <p>
+    Want to leave a comment? Visit <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}"> this post's issue page on GitHub</a> (you'll need a GitHub account. What? Like you already don't have one?!).
+  </p>
+</div>
+
+<script type="text/javascript">
+
+var converter = new Showdown.converter();
+
+function loadComments(data) {
+  for (var i=0; i<data.data.length; i++) {
+    var cuser = data.data[i].user.login;
+    var cuserlink = "https://www.github.com/" + data.data[i].user.login;
+    var clink = "https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-" + data.data[i].url.substring(data.data[i].url.lastIndexOf("/")+1);
+    var cbody = converter.makeHtml(data.data[i].body);
+    var cavatarlink = data.data[i].user.avatar_url;
+    var cdate = Date.parse(data.data[i].created_at).toString("yyyy-MM-dd HH:mm:ss");
+    
+    $("#comments").append("<div class='comment'><div class='commentheader'><div class='commentgravatar'>" + '<img src="' + cavatarlink + '" alt="" width="20" height="20">' + "</div><a class='commentuser' href=\""+ cuserlink + "\">" + cuser + "</a><a class='commentdate' href=\"" + clink + "\">" + cdate + "</a></div><div class='commentbody'>" + cbody + "</div></div>");
+  }
+}
+
+$.ajax("https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments", {
+  dataType : "jsonp",
+  jsonpCallback : "loadComments"
+});
+</script>
