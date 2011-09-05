@@ -38,6 +38,7 @@ function loadComments(data) {
 
 $.ajax("https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments", {
   dataType : "jsonp",
+  scriptCharset : "utf-8",
   jsonpCallback : "loadComments"
 });
 </script>

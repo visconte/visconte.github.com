@@ -6,9 +6,9 @@ layout: nil
 
   <title>Linux Экспедиция</title>
   <link href="http://visconte.github.com/atom.xml" rel="self"/>
-  <link href="http://visconte.github.com"/>
+  <link href="http://visconte.github.com/"/>
   <updated>{{site.time | date_to_xmlschema }}</updated>
-  <id>http://visconte.github.com</id>
+  <id>http://visconte.github.com/</id>
   <author>
     <name>visconte</name>
     <email></email>
