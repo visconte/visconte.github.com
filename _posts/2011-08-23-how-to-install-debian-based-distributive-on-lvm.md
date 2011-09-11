@@ -82,5 +82,3 @@ apt-get install lvm2
 * [Arch Linux: LVM](http://www.altlinux.org/LVM)
 
 * [How To Create Linux LVM In 3 Minutes](http://www.walkernews.net/2007/07/02/how-to-create-linux-lvm-in-3-minutes/)
-
-{% flickr_set tsmango 72157625102245887 %}
