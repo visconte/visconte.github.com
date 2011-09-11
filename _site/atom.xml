@@ -4,7 +4,7 @@
   <title>Linux Экспедиция</title>
   <link href="http://visconte.github.com/atom.xml" rel="self"/>
   <link href="http://visconte.github.com/"/>
-  <updated>2011-09-11T20:26:28+03:00</updated>
+  <updated>2011-09-11T20:31:03+03:00</updated>
   <id>http://visconte.github.com/</id>
   <author>
     <name>visconte</name>
@@ -277,6 +277,26 @@ spam bots start invading GitHub issue trackers.&lt;/p&gt;
 the following files: general layout for blog posts and CSS rules. Let
 me know if you find a better system for hosting blog comments on
 GitHub or improving this one. @izuzak&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Icons As Font</title>
+    <link href="http://visconte.github.com/2011/07/28/icons-as-font.html"/>
+    <updated>2011-07-28T00:00:00+03:00</updated>
+    <id>http://visconte.github.com/2011/07/28/icons-as-font</id>
+    <content type="html">&lt;p&gt;Слова о том, что люди делятся на тех, кто умеет рисовать и тех, кто не
+умеет, справедливы и в отношении дизайна сайта. Одни изначально
+представляют, как должен выглядеть, другим же необходима дюжина
+попыток, чтобы сделать то же самое. Исключением не является и вывод
+иконок, которые в обилии присутствуют на практически любом сайте. Тут
+нас подстерегает сразу несколько проблем. Найденная красивая иконка
+может не подходить к дизайну (например, яркая разноцветная иконка для
+монохроматической цветовой гаммы) выпадая из общего фона, забирая на
+себя излишнее внимание. Восприятие цвета зависит от окружающего фона и
+зачастую с новым окружением выглядит она иначе, чем
+предполагалось. Набор иконок имеет определенные размеры, и возможности
+подобрать размер на месте часто не хватает.&lt;/p&gt;
 </content>
   </entry>
   
