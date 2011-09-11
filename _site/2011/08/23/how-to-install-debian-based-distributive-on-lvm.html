@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Установка Debian-based дистрибутивов на LVM</title>
+    <meta name="author" content="visconte" />
+    <link href="http://feeds.feedburner.com/visconte" rel="alternate" title="visconte" type="application/atom+xml" />
+    
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+  </head>
+
+  <body>
+    <!-- Outer wrapper -->
+    <div id="outer-wrapper">
+      <div id="right-col-1">
+      </div>
+
+      <!-- Header wrapper -->
+      <div id="header-wrapper">
+	<!-- Header -->
+	<div class="header">
+	  <a href="/">Linux Экспедиция</a>
+	</div>
+      </div> <!-- end header -->
+      <!-- end header wrapper -->
+
+      <!-- Crosscol wrapper -->
+      <div id="crosscol-wrapper">
+	<ul class="PageList">
+	  <li id="homepage">
+	    <a href="/">Главная</a>
+	  </li>
+
+	  <li id="rss">
+	    <a href="http://feeds.feedburner.com/visconte">RSS</a>
+	  </li>
+	</ul>
+      </div>
+      <!-- end crosscol wrapper -->
+
+      <!-- Main -->
+      <div id="main">
+	<div id="post">
+  <h2> Установка Debian-based дистрибутивов на LVM </h2>
+  <p class="meta"> 23 Aug 2011 </p>
+  <p>Скажем, вы только что приобрели новый жёсткий диск и горите желанием
+установить на него свой любимый
+<a href="http://www.debian.org/misc/children-distros.ru.html">Debian-based дистрибутив</a>. Прежде
+всего, вам предстоит разбить диск на разделы. Если разметка диска
+выбрана неверно, то часть разделов будет пустовать, а на других со
+временем обнаружится нехватка свободного места. Как выход из данной
+ситуации, можно отдать часть рабочего пространства диска под
+<a href="http://en.wikipedia.org/wiki/Logical_Volume_Manager_%28Linux%29">LVM</a>
+(<em>Менеджер логических томов</em>) и работать не с разделами, а с
+логическими томами, размер которых легко поддаётся изменению.</p>
+
+<h3 id="section">Создание таблицы разделов</h3>
+
+<p>Создадим на новом диске следующие разделы:</p>
+
+<ul>
+  <li>
+    <p>/boot (64MB);</p>
+  </li>
+  <li>
+    <p>swap-раздел (если планируете использовать гибернацию, то раздел
+должен быть немного больше размера оперативной памяти);</p>
+  </li>
+  <li>
+    <p>оставшееся пространство отдадим под LVM.</p>
+  </li>
+</ul>
+
+<p>Воспользуемся утилитой <code>fdisk</code>, которая есть в любом дистрибутиве
+Linux. Загружаемся с LiveCD и входим в интерактивный режим, выполнив
+команду <code>fdisk /путь/к/диску</code>:</p>
+
+<ol>
+  <li>
+    <p>Нажимаем <code>n</code>, чтобы создать новый раздел на диске, далее, <code>p</code>
+(создать первичный раздел) и выбираем номер раздела.</p>
+  </li>
+  <li>
+    <p>На предложение выбрать начало раздела нажимаем <code>Enter</code>: новый
+раздел начнётся со следующего сектора. Затем нужно задать окончание
+или размер нового раздела. Размер лучше задать в секторах (единицы
+измерения при этом не указываются), чтобы последний сектор раздела был
+полностью заполнен (размер сектора есть в выводе команды <code>fdisk -l
+/путь/к/диску</code>).</p>
+  </li>
+  <li>
+    <p>Изменим тип 3-го раздела с обычного Linux-раздела (0x83) на LVM
+(0x8e). Введём <code>t</code>, затем &mdash; номер раздела. Вводим <code>8e</code>, чтобы
+изменить тип раздела на LVM (список поддерживаемых разделов можно
+посмотреть, нажав <code>L</code>).</p>
+  </li>
+  <li>
+    <p>После того, как все разделы созданы, нажимаем <code>p</code> для просмотра
+таблицы разделов. Если всё устраивает &mdash; нажимаем <code>w</code>, и таблица
+разделов будет создана (выход из интерактивного режима без изменений
+осуществляется по нажатию <code>q</code>).</p>
+  </li>
+</ol>
+
+<p>Вот пример полученной таблицы разделов:</p>
+
+<div class="highlight"><pre><code class="bash">root@vovchik:/home/user# fdisk -l /dev/sdb
+
+Диск /dev/sdb: 320.1 ГБ, 320072933376 байт
+255 heads, 63 sectors/track, 38913 cylinders
+<span class="nv">Units</span> <span class="o">=</span> цилиндры of 16065 * <span class="nv">512</span> <span class="o">=</span> 8225280 bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512 bytes / 512 bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: 512 bytes / 512 bytes
+Disk identifier: 0x0004453e
+
+Устр-во Загр     Начало       Конец       Блоки   Id  Система
+</code></pre>
+</div>
+
+<h3 id="section-1">Создание логических томов</h3>
+
+<p>Всё необходимые пакеты мы доустановим в процессе, и начнём со
+следующего</p>
+
+<div class="highlight"><pre><code class="bash">apt-get install lvm2
+</code></pre>
+</div>
+
+<p>При подготовке статьи использовались следующие источники:</p>
+
+<ul>
+  <li>
+    <p><a href="http://www.opennet.ru/base/sys/lvm_install.txt.html">OpenNET: Разбиение дисков и инсталляция Linux на LVM</a></p>
+  </li>
+  <li>
+    <p><a href="https://wiki.archlinux.org/index.php/LVM_%28%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%29">Arch Linux Wiki: LVM (Русский)</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.altlinux.org/LVM">Arch Linux: LVM</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.walkernews.net/2007/07/02/how-to-create-linux-lvm-in-3-minutes/">How To Create Linux LVM In 3 Minutes</a></p>
+  </li>
+</ul>
+
+<p class="gallery">
+<a href="http://www.flickr.com/photos/tsmango/5419984633/in/set-72157625102245887/" target="_blank">
+<img src="http://farm6.static.flickr.com/5131/5419984633_52cc7d373d_s.jpg" rel="" />
+</a>
+<a href="http://www.flickr.com/photos/tsmango/5420591124/in/set-72157625102245887/" target="_blank">
+<img src="http://farm6.static.flickr.com/5298/5420591124_501a351f77_s.jpg" rel="" />
+</a>
+<a href="http://www.flickr.com/photos/tsmango/5419984807/in/set-72157625102245887/" target="_blank">
+<img src="http://farm6.static.flickr.com/5095/5419984807_f227739054_s.jpg" rel="" />
+</a>
+<a href="http://www.flickr.com/photos/tsmango/5420591310/in/set-72157625102245887/" target="_blank">
+<img src="http://farm6.static.flickr.com/5019/5420591310_5811be4404_s.jpg" rel="" />
+</a>
+<a href="http://www.flickr.com/photos/tsmango/5419984983/in/set-72157625102245887/" target="_blank">
+<img src="http://farm6.static.flickr.com/5140/5419984983_c4677f7f86_s.jpg" rel="" />
+</a>
+<a href="http://www.flickr.com/photos/tsmango/5420591448/in/set-72157625102245887/" target="_blank">
+<img src="http://farm6.static.flickr.com/5292/5420591448_9f38f57c22_s.jpg" rel="" />
+</a>
+
+</p>
+
+
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-en-US.js"></script>
+<script type="text/javascript" src="http://github.github.com/github-flavored-markdown/scripts/showdown.js"></script>
+
+<div id="comments">
+  <h2>Отправить комментарий</h2>
+  <p>
+    Want to leave a comment? Visit <a href="https://github.com/visconte/visconte.github.com/issues/1"> this post's issue page on GitHub</a> (you'll need a GitHub account. What? Like you already don't have one?!).
+  </p>
+</div>
+
+<script type="text/javascript">
+
+var converter = new Showdown.converter();
+
+function loadComments(data) {
+  for (var i=0; i<data.data.length; i++) {
+    var cuser = data.data[i].user.login;
+    var cuserlink = "https://www.github.com/" + data.data[i].user.login;
+    var clink = "https://github.com/visconte/visconte.github.com/issues/1#issuecomment-" + data.data[i].url.substring(data.data[i].url.lastIndexOf("/")+1);
+    var cbody = converter.makeHtml(data.data[i].body);
+    var cavatarlink = data.data[i].user.avatar_url;
+    var cdate = Date.parse(data.data[i].created_at).toString("yyyy-MM-dd HH:mm:ss");
+    
+    $("#comments").append("<div class='comment'><div class='commentheader'><div class='commentgravatar'>" + '<img src="' + cavatarlink + '" alt="" width="20" height="20">' + "</div><a class='commentuser' href=\""+ cuserlink + "\">" + cuser + "</a><a class='commentdate' href=\"" + clink + "\">" + cdate + "</a></div><div class='commentbody'>" + cbody + "</div></div>");
+  }
+}
+
+$.ajax("https://api.github.com/repos/visconte/visconte.github.com/issues/1/comments", {
+  dataType : "jsonp",
+  scriptCharset : "utf-8",
+  jsonpCallback : "loadComments"
+});
+</script>
+
+      </div> <!-- end main -->
+
+      <!-- Right column -->
+      <div id="right-col">
+      </div> <!-- end right column -->
+    </div>
+    <!-- end outer wrapper -->
+
+    <!-- Footer wrapper -->
+    <div id="footer-wrapper">
+      <!-- Footer -->
+      <div id="footer">
+	Footer
+      </div> <!-- end footer -->
+    </div>
+    <!-- end footer wrapper -->
+  </body>
+</html>
