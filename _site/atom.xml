@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Linux Экспедиция</title>
+  <link href="http://visconte.github.com/atom.xml" rel="self"/>
+  <link href="http://visconte.github.com/"/>
+  <updated>2011-09-11T21:50:49+03:00</updated>
+  <id>http://visconte.github.com/</id>
+  <author>
+    <name>visconte</name>
+    <email></email>
+  </author>
+
+  
+  <entry>
+    <title>Установка Debian-based дистрибутивов на LVM</title>
+    <link href="http://visconte.github.com/2011/08/23/how-to-install-debian-based-distributive-on-lvm.html"/>
+    <updated>2011-08-23T00:00:00+03:00</updated>
+    <id>http://visconte.github.com/2011/08/23/how-to-install-debian-based-distributive-on-lvm</id>
+    <content type="html">&lt;p&gt;Скажем, вы только что приобрели новый жёсткий диск и горите желанием
+установить на него свой любимый
+&lt;a href=&quot;http://www.debian.org/misc/children-distros.ru.html&quot;&gt;Debian-based дистрибутив&lt;/a&gt;. Прежде
+всего, вам предстоит разбить диск на разделы. Если разметка диска
+выбрана неверно, то часть разделов будет пустовать, а на других со
+временем обнаружится нехватка свободного места. Как выход из данной
+ситуации, можно отдать часть рабочего пространства диска под
+&lt;a href=&quot;http://en.wikipedia.org/wiki/Logical_Volume_Manager_%28Linux%29&quot;&gt;LVM&lt;/a&gt;
+(&lt;em&gt;Менеджер логических томов&lt;/em&gt;) и работать не с разделами, а с
+логическими томами, размер которых легко поддаётся изменению.&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;Создание таблицы разделов&lt;/h3&gt;
+
+&lt;p&gt;Создадим на новом диске следующие разделы:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;/boot (64MB);&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;swap-раздел (если планируете использовать гибернацию, то раздел
+должен быть немного больше размера оперативной памяти);&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;оставшееся пространство отдадим под LVM.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Воспользуемся утилитой &lt;code&gt;fdisk&lt;/code&gt;, которая есть в любом дистрибутиве
+Linux. Загружаемся с LiveCD и входим в интерактивный режим, выполнив
+команду &lt;code&gt;fdisk /путь/к/диску&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Нажимаем &lt;code&gt;n&lt;/code&gt;, чтобы создать новый раздел на диске, далее, &lt;code&gt;p&lt;/code&gt;
+(создать первичный раздел) и выбираем номер раздела.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;На предложение выбрать начало раздела нажимаем &lt;code&gt;Enter&lt;/code&gt;: новый
+раздел начнётся со следующего сектора. Затем нужно задать окончание
+или размер нового раздела. Размер лучше задать в секторах (единицы
+измерения при этом не указываются), чтобы последний сектор раздела был
+полностью заполнен (размер сектора есть в выводе команды &lt;code&gt;fdisk -l
+/путь/к/диску&lt;/code&gt;).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Изменим тип 3-го раздела с обычного Linux-раздела (0x83) на LVM
+(0x8e). Введём &lt;code&gt;t&lt;/code&gt;, затем &amp;mdash; номер раздела. Вводим &lt;code&gt;8e&lt;/code&gt;, чтобы
+изменить тип раздела на LVM (список поддерживаемых разделов можно
+посмотреть, нажав &lt;code&gt;L&lt;/code&gt;).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;После того, как все разделы созданы, нажимаем &lt;code&gt;p&lt;/code&gt; для просмотра
+таблицы разделов. Если всё устраивает &amp;mdash; нажимаем &lt;code&gt;w&lt;/code&gt;, и таблица
+разделов будет создана (выход из интерактивного режима без изменений
+осуществляется по нажатию &lt;code&gt;q&lt;/code&gt;).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Вот пример полученной таблицы разделов:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;root@vovchik:/home/user# fdisk -l /dev/sdb
+
+Диск /dev/sdb: 320.1 ГБ, 320072933376 байт
+255 heads, 63 sectors/track, 38913 cylinders
+&lt;span class=&quot;nv&quot;&gt;Units&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; цилиндры of 16065 * &lt;span class=&quot;nv&quot;&gt;512&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 8225280 bytes
+Sector size &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;logical/physical&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 512 bytes / 512 bytes
+I/O size &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;minimum/optimal&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 512 bytes / 512 bytes
+Disk identifier: 0x0004453e
+
+Устр-во Загр     Начало       Конец       Блоки   Id  Система
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;Создание логических томов&lt;/h3&gt;
+
+&lt;p&gt;Всё необходимые пакеты мы доустановим в процессе, и начнём со
+следующего&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;apt-get install lvm2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;При подготовке статьи использовались следующие источники:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.opennet.ru/base/sys/lvm_install.txt.html&quot;&gt;OpenNET: Разбиение дисков и инсталляция Linux на LVM&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/LVM_%28%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%29&quot;&gt;Arch Linux Wiki: LVM (Русский)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.altlinux.org/LVM&quot;&gt;Arch Linux: LVM&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.walkernews.net/2007/07/02/how-to-create-linux-lvm-in-3-minutes/&quot;&gt;How To Create Linux LVM In 3 Minutes&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Добавление системы комментариев в GitHub Pages</title>
+    <link href="http://visconte.github.com/2011/08/14/github-hosted-comments-for-github-pages.html"/>
+    <updated>2011-08-14T00:00:00+03:00</updated>
+    <id>http://visconte.github.com/2011/08/14/github-hosted-comments-for-github-pages</id>
+    <content type="html">&lt;p&gt;GitHub &amp;mdash; это не только статические HTML страницы, но и замечательная
+система комментариев&amp;hellip; предназначенная для Issue-трекера. У
+приверженцев хостинга GitHub рано или поздно должна была появиться
+идея использовать Issue-трекер для комментирования постов на GitHub
+Pages. Вашему вниманию представляется перевод поста
+&lt;a href=&quot;http://ivanzuzak.info/2011/02/18/github-hosted-comments-for-github-hosted-blogs.html&quot;&gt;GitHub hosted comments for GitHub hosted blogs&lt;/a&gt;
+пользователя &lt;a href=&quot;http://ivanzuzak.info/&quot;&gt;Ivan Zuzak&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Недавно,
+&lt;a href=&quot;http://ivanzuzak.info/2011/01/02/enabling-pubsubhubbub-for-github-hosted-blogs.html&quot;&gt;при миграции&lt;/a&gt;
+хостинга блога с Wordpress.com на GitHub мне стало любопытно: не могли
+бы комментарии блога быть также как-нибудь размещены на GitHub. Зачем
+размещать комментарии на GitHub? Кроме того, что это по-настоящему
+классно, открыто и изменяемо, это дало бы возможность держать &lt;em&gt;всё&lt;/em&gt;
+содержимое блога на GitHub.&lt;/p&gt;
+
+&lt;p&gt;Итак, что бы я хотел от будущей системы комментариев:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;должна полностью храниться на GitHub.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;должна быть привязана к GitHub-репозиторию, на котором находится
+блог.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;должна поддерживать имена пользователей, привязывать каждый
+комментарий к пользователю, что оставил его, предоставлять
+владельцам блогов и пользователям контроль над их комментариями.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;должна быть возможность извлекать комментарии для поста из системы и
+отображать их на Web-странице поста.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;должна быть проста при установке владельцем блога и при
+использовании читателями блога.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Эти требования исключают использование
+&lt;a href=&quot;https://gist.github.com/&quot;&gt;Gist&amp;rsquo;ов&lt;/a&gt;, требующих от пользователей
+создания fork&amp;rsquo;а репозитория и представления pull-запроса в специальный
+файл для комментариев (ох, это было фактически первое, о чём я
+подумал) или использование внешних сервисов для создания и/или
+хранения комментариев.&lt;/p&gt;
+
+&lt;p&gt;Решение, к которому я пришёл, это использовать
+&lt;a href=&quot;https://github.com/blog/411-github-issue-tracker&quot;&gt;issue-трекер GitHub&amp;rsquo;а&lt;/a&gt;
+для создания и хранения комментариев и
+&lt;a href=&quot;http://developer.github.com/v3/&quot;&gt;GitHub API&lt;/a&gt; для извлечения
+комментариев из issue-трекера на Web-страницу блога, а также
+&lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot;&gt;GitHub Flavored Markdown&lt;/a&gt;
+для представления комментариев на Web-странице, используя
+JavaScript. Вот, как всё это работает.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/github/github_issues.png&quot; alt=&quot;&quot; title=&quot;Добавление системы комментариев в GitHub Pages&quot; class=&quot;aligncenter&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Во-первых, для каждого поста, что вы планируете опубликовать, создайте
+issue на issue-трекере GitHub-репозитория вашего блога. Например, вот
+&lt;a href=&quot;https://github.com/izuzak/izuzak.github.com/issues/12&quot;&gt;issue для данного поста&lt;/a&gt;. Заметьте,
+что все issue имеют общий базовый URL
+(&lt;code&gt;https://github.com/izuzak/izuzak.github.com/issues/&lt;/code&gt; в моём примере)
+и уникальный id (&lt;code&gt;12&lt;/code&gt; в моём примере). Читатели вашего блога будут
+использовать этот issue-трекер, когда захотят оставить комментарий.&lt;/p&gt;
+
+&lt;p&gt;Во-вторых, добавьте ссылку к каждому посту, указывающую на
+Web-страницу с issue, что вы создали для комментариев. Так как вы
+вероятно используете &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt; для
+генерации вашего блога, то простой способ это сделать &amp;mdash; добавить
+ранее упоминавшийся id для issue в
+&lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter&quot;&gt;YAML front matter&lt;/a&gt;
+блок к посту блога и затем добавить
+&lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/Liquid-Extensions&quot;&gt;Liquid-шаблон&lt;/a&gt;
+в &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/Usage&quot;&gt;layout-файл&lt;/a&gt; для
+извлечения id и генерации полной ссылки на issue. Например, вот YAML
+front matter для поста, что вы читаете (&lt;code&gt;commentIssueId&lt;/code&gt; &amp;mdash; это id
+для issue поста на issue-трекере репозитория):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;yaml&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;post&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;GitHub hosted comments for GitHub hosted blogs&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;github, blog, comments, hosting&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;commentIssueId&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;12&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;А вот фрагмент layout-файла для генерации постов блога
+(часть &lt;code&gt;page.commentIssueId&lt;/code&gt;, заключённая в фигурные скобки, &amp;mdash; это
+Liquid-шаблон, который извлекает &lt;code&gt;commentIssueId&lt;/code&gt; для поста):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Comments&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;header&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     Want to leave a comment? Visit &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;https://github.com/izuzak/izuzak.github.com/issues/{{page.commentIssueId}}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; this post&amp;#39;s issue page on GitHub&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt; (you&amp;#39;ll need a GitHub account. What? Like you already don&amp;#39;t have one?!).
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;В-третьих, добавьте JavaScript сценарий к каждому посту блога, который
+будет извлекать комментарии поста из issue, используя GitHub
+API. &lt;a href=&quot;http://developer.github.com/v3/issues/&quot;&gt;GitHub issues API&lt;/a&gt; как
+раз то, что нам сейчас нужно &amp;mdash; сделать JSONP запрос на вход
+API-сервера и получить все комментарии для конкретного issue. Для
+каждого комментария вы получаете пользовательский GitHub id и id
+граватара для пользователя, что оставил данный комментарий, id
+комментария на issue, времена создания и модификации, а также сам
+комментарий. Ещё, так как вы вероятно используете Jekyll, то проще
+всего поместить соответствующий код в layout-файл для постов
+блога. Например, вот код, чтобы забирать комментарии данного поста
+посредством &lt;a href=&quot;http://api.jquery.com/jQuery.ajax/&quot;&gt;jQuery&lt;/a&gt; (отметьте
+ещё, что вам нужен Liquid-шаблон для определения ссылки на issue, из
+которого вы хотите извлекать комментарии):&lt;/p&gt;
+
+&lt;p&gt;Fourth, insert the pulled comment data into the blog post&amp;rsquo;s HTML and
+render the body of the comments using GitHub Flavored
+Markdown. Inserting the comment data into the DOM is easy once you
+decide which data you want to display. However, since issue comments
+may be written in GitHub Flavored Markdown, some JavaScrip code is
+needed to translate the comment to HTML. Fortunately, GitHub has a
+JavaScript library for that also - a modified version of the Showdown
+library for converting Markdown into HTML. Again, it&amp;rsquo;s easiest if you
+put the code in the layout file for blog posts. For example, here&amp;rsquo;s
+the code which I use for inserting comments:&lt;/p&gt;
+
+&lt;p&gt;Also notice that I use the DateJS library to pretty-print the comment
+dates and that I fetch the Gravatar images of users who made the
+comments.&lt;/p&gt;
+
+&lt;p&gt;Finally, add CSS rules to make the comments look pretty. And if you&amp;rsquo;re
+extra geeky and love GitHub like me, make the comments look like
+GitHub code comments:&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it! Creating the system was really easy - GitHub already
+had all the pieces necessary (Issue tracker, API, Markdown JavaScript
+library) and all I needed was a bit of glue to tie all of them
+together. I&amp;rsquo;m using this as the commenting system for my blog until
+some serious problem turns up. I like how the system integrates with
+GitHub login, how all blog comments are visible on the issue page and
+the overall simplicity of using the system. What I didn&amp;rsquo;t find an easy
+way of doing is creating issue comments directly from the a blog
+post&amp;rsquo;s Web page, without making the user navigate to the Issue tracker
+page (really hard to do without an external service since the blog is
+a static site). Other than that, I&amp;rsquo;m not sure what will happen when
+spam bots start invading GitHub issue trackers.&lt;/p&gt;
+
+&lt;p&gt;You can see the complete code I&amp;rsquo;m using for the commenting system in
+the following files: general layout for blog posts and CSS rules. Let
+me know if you find a better system for hosting blog comments on
+GitHub or improving this one. @izuzak&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Icons As Font</title>
+    <link href="http://visconte.github.com/2011/07/28/icons-as-font.html"/>
+    <updated>2011-07-28T00:00:00+03:00</updated>
+    <id>http://visconte.github.com/2011/07/28/icons-as-font</id>
+    <content type="html">&lt;p&gt;Слова о том, что люди делятся на тех, кто умеет рисовать и тех, кто не
+умеет, справедливы и в отношении дизайна сайта. Одни изначально
+представляют, как должен выглядеть, другим же необходима дюжина
+попыток, чтобы сделать то же самое. Исключением не является и вывод
+иконок, которые в обилии присутствуют на практически любом сайте. Тут
+нас подстерегает сразу несколько проблем. Найденная красивая иконка
+может не подходить к дизайну (например, яркая разноцветная иконка для
+монохроматической цветовой гаммы) выпадая из общего фона, забирая на
+себя излишнее внимание. Восприятие цвета зависит от окружающего фона и
+зачастую с новым окружением выглядит она иначе, чем
+предполагалось. Набор иконок имеет определенные размеры, и возможности
+подобрать размер на месте часто не хватает.&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>

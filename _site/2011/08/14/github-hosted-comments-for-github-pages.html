@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Добавление системы комментариев в GitHub Pages</title>
+    <meta name="author" content="visconte" />
+    <link href="http://feeds.feedburner.com/visconte" rel="alternate" title="visconte" type="application/atom+xml" />
+    
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+  </head>
+
+  <body>
+    <!-- Outer wrapper -->
+    <div id="outer-wrapper">
+      <div id="right-col-1">
+      </div>
+
+      <!-- Header wrapper -->
+      <div id="header-wrapper">
+	<!-- Header -->
+	<div class="header">
+	  <a href="/">Linux Экспедиция</a>
+	</div>
+      </div> <!-- end header -->
+      <!-- end header wrapper -->
+
+      <!-- Crosscol wrapper -->
+      <div id="crosscol-wrapper">
+	<ul class="PageList">
+	  <li id="homepage">
+	    <a href="/">Главная</a>
+	  </li>
+
+	  <li id="rss">
+	    <a href="http://feeds.feedburner.com/visconte">RSS</a>
+	  </li>
+	</ul>
+      </div>
+      <!-- end crosscol wrapper -->
+
+      <!-- Main -->
+      <div id="main">
+	<div id="post">
+  <h2> Добавление системы комментариев в GitHub Pages </h2>
+  <p class="meta"> 14 Aug 2011 </p>
+  <p>GitHub &mdash; это не только статические HTML страницы, но и замечательная
+система комментариев&hellip; предназначенная для Issue-трекера. У
+приверженцев хостинга GitHub рано или поздно должна была появиться
+идея использовать Issue-трекер для комментирования постов на GitHub
+Pages. Вашему вниманию представляется перевод поста
+<a href="http://ivanzuzak.info/2011/02/18/github-hosted-comments-for-github-hosted-blogs.html">GitHub hosted comments for GitHub hosted blogs</a>
+пользователя <a href="http://ivanzuzak.info/">Ivan Zuzak</a>.</p>
+
+<p>Недавно,
+<a href="http://ivanzuzak.info/2011/01/02/enabling-pubsubhubbub-for-github-hosted-blogs.html">при миграции</a>
+хостинга блога с Wordpress.com на GitHub мне стало любопытно: не могли
+бы комментарии блога быть также как-нибудь размещены на GitHub. Зачем
+размещать комментарии на GitHub? Кроме того, что это по-настоящему
+классно, открыто и изменяемо, это дало бы возможность держать <em>всё</em>
+содержимое блога на GitHub.</p>
+
+<p>Итак, что бы я хотел от будущей системы комментариев:</p>
+
+<ul>
+  <li>
+    <p>должна полностью храниться на GitHub.</p>
+  </li>
+  <li>
+    <p>должна быть привязана к GitHub-репозиторию, на котором находится
+блог.</p>
+  </li>
+  <li>
+    <p>должна поддерживать имена пользователей, привязывать каждый
+комментарий к пользователю, что оставил его, предоставлять
+владельцам блогов и пользователям контроль над их комментариями.</p>
+  </li>
+  <li>
+    <p>должна быть возможность извлекать комментарии для поста из системы и
+отображать их на Web-странице поста.</p>
+  </li>
+  <li>
+    <p>должна быть проста при установке владельцем блога и при
+использовании читателями блога.</p>
+  </li>
+</ul>
+
+<p>Эти требования исключают использование
+<a href="https://gist.github.com/">Gist&rsquo;ов</a>, требующих от пользователей
+создания fork&rsquo;а репозитория и представления pull-запроса в специальный
+файл для комментариев (ох, это было фактически первое, о чём я
+подумал) или использование внешних сервисов для создания и/или
+хранения комментариев.</p>
+
+<p>Решение, к которому я пришёл, это использовать
+<a href="https://github.com/blog/411-github-issue-tracker">issue-трекер GitHub&rsquo;а</a>
+для создания и хранения комментариев и
+<a href="http://developer.github.com/v3/">GitHub API</a> для извлечения
+комментариев из issue-трекера на Web-страницу блога, а также
+<a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a>
+для представления комментариев на Web-странице, используя
+JavaScript. Вот, как всё это работает.</p>
+
+<p><img src="/images/github/github_issues.png" alt="" title="Добавление системы комментариев в GitHub Pages" class="aligncenter" /></p>
+
+<p>Во-первых, для каждого поста, что вы планируете опубликовать, создайте
+issue на issue-трекере GitHub-репозитория вашего блога. Например, вот
+<a href="https://github.com/izuzak/izuzak.github.com/issues/12">issue для данного поста</a>. Заметьте,
+что все issue имеют общий базовый URL
+(<code>https://github.com/izuzak/izuzak.github.com/issues/</code> в моём примере)
+и уникальный id (<code>12</code> в моём примере). Читатели вашего блога будут
+использовать этот issue-трекер, когда захотят оставить комментарий.</p>
+
+<p>Во-вторых, добавьте ссылку к каждому посту, указывающую на
+Web-страницу с issue, что вы создали для комментариев. Так как вы
+вероятно используете <a href="https://github.com/mojombo/jekyll">Jekyll</a> для
+генерации вашего блога, то простой способ это сделать &mdash; добавить
+ранее упоминавшийся id для issue в
+<a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML front matter</a>
+блок к посту блога и затем добавить
+<a href="https://github.com/mojombo/jekyll/wiki/Liquid-Extensions">Liquid-шаблон</a>
+в <a href="https://github.com/mojombo/jekyll/wiki/Usage">layout-файл</a> для
+извлечения id и генерации полной ссылки на issue. Например, вот YAML
+front matter для поста, что вы читаете (<code>commentIssueId</code> &mdash; это id
+для issue поста на issue-трекере репозитория):</p>
+
+<div class="highlight"><pre><code class="yaml"><span class="lineno">1</span> <span class="nn">---</span>
+<span class="lineno">2</span> <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+<span class="lineno">3</span> <span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">GitHub hosted comments for GitHub hosted blogs</span>
+<span class="lineno">4</span> <span class="l-Scalar-Plain">tags</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">github, blog, comments, hosting</span>
+<span class="lineno">5</span> <span class="l-Scalar-Plain">commentIssueId</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">12</span>
+<span class="lineno">6</span> <span class="nn">---</span>
+</code></pre>
+</div>
+
+<p>А вот фрагмент layout-файла для генерации постов блога
+(часть <code>page.commentIssueId</code>, заключённая в фигурные скобки, &mdash; это
+Liquid-шаблон, который извлекает <code>commentIssueId</code> для поста):</p>
+
+<div class="highlight"><pre><code class="html"><span class="lineno">1</span> <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;comments&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">2</span>   <span class="nt">&lt;h2&gt;</span>Comments<span class="nt">&lt;/h2&gt;</span>
+<span class="lineno">3</span>   <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;header&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">4</span>     Want to leave a comment? Visit <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/izuzak/izuzak.github.com/issues/{{page.commentIssueId}}&quot;</span><span class="nt">&gt;</span> this post&#39;s issue page on GitHub<span class="nt">&lt;/a&gt;</span> (you&#39;ll need a GitHub account. What? Like you already don&#39;t have one?!).
+<span class="lineno">5</span>   <span class="nt">&lt;/div&gt;</span>
+<span class="lineno">6</span> <span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<p>В-третьих, добавьте JavaScript сценарий к каждому посту блога, который
+будет извлекать комментарии поста из issue, используя GitHub
+API. <a href="http://developer.github.com/v3/issues/">GitHub issues API</a> как
+раз то, что нам сейчас нужно &mdash; сделать JSONP запрос на вход
+API-сервера и получить все комментарии для конкретного issue. Для
+каждого комментария вы получаете пользовательский GitHub id и id
+граватара для пользователя, что оставил данный комментарий, id
+комментария на issue, времена создания и модификации, а также сам
+комментарий. Ещё, так как вы вероятно используете Jekyll, то проще
+всего поместить соответствующий код в layout-файл для постов
+блога. Например, вот код, чтобы забирать комментарии данного поста
+посредством <a href="http://api.jquery.com/jQuery.ajax/">jQuery</a> (отметьте
+ещё, что вам нужен Liquid-шаблон для определения ссылки на issue, из
+которого вы хотите извлекать комментарии):</p>
+
+<p>Fourth, insert the pulled comment data into the blog post&rsquo;s HTML and
+render the body of the comments using GitHub Flavored
+Markdown. Inserting the comment data into the DOM is easy once you
+decide which data you want to display. However, since issue comments
+may be written in GitHub Flavored Markdown, some JavaScrip code is
+needed to translate the comment to HTML. Fortunately, GitHub has a
+JavaScript library for that also - a modified version of the Showdown
+library for converting Markdown into HTML. Again, it&rsquo;s easiest if you
+put the code in the layout file for blog posts. For example, here&rsquo;s
+the code which I use for inserting comments:</p>
+
+<p>Also notice that I use the DateJS library to pretty-print the comment
+dates and that I fetch the Gravatar images of users who made the
+comments.</p>
+
+<p>Finally, add CSS rules to make the comments look pretty. And if you&rsquo;re
+extra geeky and love GitHub like me, make the comments look like
+GitHub code comments:</p>
+
+<p>And that&rsquo;s it! Creating the system was really easy - GitHub already
+had all the pieces necessary (Issue tracker, API, Markdown JavaScript
+library) and all I needed was a bit of glue to tie all of them
+together. I&rsquo;m using this as the commenting system for my blog until
+some serious problem turns up. I like how the system integrates with
+GitHub login, how all blog comments are visible on the issue page and
+the overall simplicity of using the system. What I didn&rsquo;t find an easy
+way of doing is creating issue comments directly from the a blog
+post&rsquo;s Web page, without making the user navigate to the Issue tracker
+page (really hard to do without an external service since the blog is
+a static site). Other than that, I&rsquo;m not sure what will happen when
+spam bots start invading GitHub issue trackers.</p>
+
+<p>You can see the complete code I&rsquo;m using for the commenting system in
+the following files: general layout for blog posts and CSS rules. Let
+me know if you find a better system for hosting blog comments on
+GitHub or improving this one. @izuzak</p>
+
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-en-US.js"></script>
+<script type="text/javascript" src="http://github.github.com/github-flavored-markdown/scripts/showdown.js"></script>
+
+<div id="comments">
+  <h2>Отправить комментарий</h2>
+  <p>
+    Want to leave a comment? Visit <a href="https://github.com/visconte/visconte.github.com/issues/"> this post's issue page on GitHub</a> (you'll need a GitHub account. What? Like you already don't have one?!).
+  </p>
+</div>
+
+<script type="text/javascript">
+
+var converter = new Showdown.converter();
+
+function loadComments(data) {
+  for (var i=0; i<data.data.length; i++) {
+    var cuser = data.data[i].user.login;
+    var cuserlink = "https://www.github.com/" + data.data[i].user.login;
+    var clink = "https://github.com/visconte/visconte.github.com/issues/#issuecomment-" + data.data[i].url.substring(data.data[i].url.lastIndexOf("/")+1);
+    var cbody = converter.makeHtml(data.data[i].body);
+    var cavatarlink = data.data[i].user.avatar_url;
+    var cdate = Date.parse(data.data[i].created_at).toString("yyyy-MM-dd HH:mm:ss");
+    
+    $("#comments").append("<div class='comment'><div class='commentheader'><div class='commentgravatar'>" + '<img src="' + cavatarlink + '" alt="" width="20" height="20">' + "</div><a class='commentuser' href=\""+ cuserlink + "\">" + cuser + "</a><a class='commentdate' href=\"" + clink + "\">" + cdate + "</a></div><div class='commentbody'>" + cbody + "</div></div>");
+  }
+}
+
+$.ajax("https://api.github.com/repos/visconte/visconte.github.com/issues//comments", {
+  dataType : "jsonp",
+  scriptCharset : "utf-8",
+  jsonpCallback : "loadComments"
+});
+</script>
+
+      </div> <!-- end main -->
+
+      <!-- Right column -->
+      <div id="right-col">
+      </div> <!-- end right column -->
+    </div>
+    <!-- end outer wrapper -->
+
+    <!-- Footer wrapper -->
+    <div id="footer-wrapper">
+      <!-- Footer -->
+      <div id="footer">
+	Footer
+      </div> <!-- end footer -->
+    </div>
+    <!-- end footer wrapper -->
+  </body>
+</html>
