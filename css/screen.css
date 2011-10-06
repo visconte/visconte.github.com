@@ -46,7 +46,7 @@ ul li, ol li {
     padding-left: 2em;
     display: table;
 
-    background-color: #29568f; /* for non CSS3 browsers */
+    background-color: #4771a5; /* for non CSS3 browsers */
     /* Mozilla Firefox 3.6+ */
     background-image: -moz-linear-gradient(top, rgba(255,255,255,.8), rgba(255,255,255,.2));
     /* Webkit aka Google Chrome */
@@ -54,9 +54,9 @@ ul li, ol li {
     /* Opera 11.10+ */
     background-image: -o-linear-gradient(top, rgba(255,255,255,.8), rgba(255,255,255,.2));
 
-    -moz-box-shadow: 0 -.14em .5em rgba(255,255,255,.67) inset, 0 .14em .5em #29568f;
-    -webkit-box-shadow: 0 -.14em .5em rgba(255,255,255,.67) inset, 0 .14em .5em #29568f;
-    -o-box-shadow: 0 -.14em .5em rgba(255,255,255,.67) inset, 0 .14em .5em #29568f;
+    -moz-box-shadow: 0 -.14em .5em rgba(255,255,255,.5) inset, 0 .14em .5em #29568f;
+    -webkit-box-shadow: 0 -.14em .5em rgba(255,255,255,.5) inset, 0 .14em .5em #29568f;
+    -o-box-shadow: 0 -.14em .5em rgba(255,255,255,.5) inset, 0 .14em .5em #29568f;
 }
 #footer-wrapper {
     min-height: 3em;

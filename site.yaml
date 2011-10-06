@@ -1,8 +1,0 @@
-handlers:
-- url: '/'
-  static_files: '_site/index.html'
-  upload: '_site/index.html'
-
-- url: '/(.*)'
-  static_files: '_site/\1'
-  upload: '_site/(.*)'
