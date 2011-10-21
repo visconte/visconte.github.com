@@ -46,17 +46,17 @@ ul li, ol li {
     padding-left: 2em;
     display: table;
 
-    background-color: #4771a5; /* for non CSS3 browsers */
+    background-color: #29568f; /* for non CSS3 browsers */
     /* Mozilla Firefox 3.6+ */
-    background-image: -moz-linear-gradient(top, rgba(255,255,255,.8), rgba(255,255,255,.6) 50%, rgba(255,255,255,.1));
+    background-image: -moz-linear-gradient(top, rgba(255,255,255,.9), rgba(255,255,255,.6) 50%, rgba(255,255,255,.2));
     /* Webkit aka Google Chrome */
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.8)), color-stop(.5, rgba(255,255,255,.6)), to(rgba(255,255,255,.1)));
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.9)), color-stop(.5, rgba(255,255,255,.6)), to(rgba(255,255,255,.2)));
     /* Opera 11.10+ */
-    background-image: -o-linear-gradient(top, rgba(255,255,255,.8), rgba(255,255,255,.6) 50%, rgba(255,255,255,.1));
+    background-image: -o-linear-gradient(top, rgba(255,255,255,.9), rgba(255,255,255,.6) 50%, rgba(255,255,255,.2));
 
-    -moz-box-shadow: 0 .07em .5em -.07em #4771a5;
-    -webkit-box-shadow: 0 .07em .5em -.07em #4771a5;
-    -o-box-shadow: 0 .07em .5em -.07em #4771a5;
+    -moz-box-shadow: 0 .07em .5em -.07em #29568f;
+    -webkit-box-shadow: 0 .07em .5em -.07em #29568f;
+    -o-box-shadow: 0 .07em .5em -.07em #29568f;
 }
 #footer-wrapper {
     display: table;
@@ -109,7 +109,7 @@ ul li, ol li {
     margin-right: 1em;
 }
 #crosscol-wrapper ul.PageList li a {
-    font: normal 110% "Trebuchet MS",Arial,Verdana,sans-serif;    
+    font: bold 100% "Trebuchet MS",Arial,Verdana,sans-serif;    
     color: #29568f;
     text-decoration: none;
     text-shadow: 0 1px rgba(255,255,255,.5);
