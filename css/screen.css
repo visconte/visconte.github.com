@@ -54,9 +54,9 @@ ul li, ol li {
     /* Opera 11.10+ */
     background-image: -o-linear-gradient(top, rgba(255,255,255,.8), rgba(255,255,255,.6) 50%, rgba(255,255,255,.1));
 
-    -moz-box-shadow: 0 .07em .3em #4771a5;
-    -webkit-box-shadow: 0 .07em .3em #4771a5;
-    -o-box-shadow: 0 .07em .3em #4771a5;
+    -moz-box-shadow: 0 .07em .5em -.07em #4771a5;
+    -webkit-box-shadow: 0 .07em .5em -.07em #4771a5;
+    -o-box-shadow: 0 .07em .5em -.07em #4771a5;
 }
 #footer-wrapper {
     display: table;
