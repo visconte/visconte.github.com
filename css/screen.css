@@ -48,11 +48,11 @@ ul li, ol li {
 
     background-color: #4771a5; /* for non CSS3 browsers */
     /* Mozilla Firefox 3.6+ */
-    background-image: -moz-linear-gradient(top, rgba(255,255,255,.9), rgba(255,255,255,.6) 50%, rgba(255,255,255,.2));
+    background-image: -moz-linear-gradient(top, #fff, rgba(255,255,255,.6) 50%, rgba(255,255,255,.2));
     /* Webkit aka Google Chrome */
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.9)), color-stop(.5, rgba(255,255,255,.6)), to(rgba(255,255,255,.2)));
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(.5, rgba(255,255,255,.6)), to(rgba(255,255,255,.2)));
     /* Opera 11.10+ */
-    background-image: -o-linear-gradient(top, rgba(255,255,255,.9), rgba(255,255,255,.6) 50%, rgba(255,255,255,.2));
+    background-image: -o-linear-gradient(top, #fff, rgba(255,255,255,.6) 50%, rgba(255,255,255,.2));
 
     -moz-box-shadow: 0 -.07em .07em #4771a5 inset, 0 .07em .3em #4771a5;
     -webkit-box-shadow: 0 -.07em .07em #4771a5 inset, 0 .07em .3em #4771a5;
