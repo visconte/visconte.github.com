@@ -1,0 +1,153 @@
+.comment {
+    background-color: transparent;
+    border-color: #cacaca;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 0;
+    width: 100%;
+}  
+.comment .commentheader {
+    border-bottom-color: #cacaca;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    color: black;
+    background-image: url(https://assets2.github.com/images/modules/comments/metabar.gif);
+    color: black;
+    display: block;
+    float: left;
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    height: 33px;
+    line-height: 33px;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-shadow: rgba(255,255,255,.7) 1px 1px;
+    white-space: nowrap;
+    width: 100%;
+}
+.comment .commentheader .commentgravatar {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: white;
+    background-image: none;
+    background-origin: padding-box;
+    border-color: #c8c8c8;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    display: inline-block;
+    float: none;
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    font-size: 1px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    height: 20px;
+    line-height: 1px;
+    margin-left: 5px;
+    margin-right: 3px;
+    margin-top: -2px;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 1px;
+    text-overflow: clip;
+    text-shadow: rgba(255,255,255,.7) 1px 1px;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 20px;
+}  
+.comment .commentheader a:link {
+    text-decoration: none;
+}
+.comment .commentheader a:hover {
+    border-bottom: 1px solid;
+}
+.comment .commentheader .commentuser {
+    background-color: transparent;
+    color: black;
+    display: inline;
+    float: none;
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    height: 0;
+    line-height: 16px;
+    margin-left: 5px;
+    margin-right: 10px;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 0;
+    text-overflow: clip;
+    text-shadow: rgba(255,255,255,.7) 1px 1px;
+    white-space: nowrap;
+    width: 0;
+}  
+.comment .commentheader .commentdate {
+    background-color: transparent;
+    color: #777;
+    display: inline;
+    float: none;
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    height: 0;
+    line-height: 33px;
+    margin: 0;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 0;
+    text-overflow: clip;
+    text-shadow: rgba(255,255,255,.7) 1px 1px;
+    white-space: nowrap;
+    width: 20em;
+}  
+.comment .commentbody {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: none;
+    background-origin: padding-box;
+    color: #333;
+    display: block;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 40px;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 0;
+    position: static;
+    width: 96%;
+    word-wrap: break-word;
+}
+.comment .commentbody p {
+    margin: .5em 0;
+}
+.comment .commentbody pre {
+    border: 0px solid #ddd;
+    background-color: #eef;
+    padding: 0 .4em;
+}
+.comment .commentbody pre code {
+    border: 0px solid #ddd;
+}
+.comment .commentbody code {
+    border: 1px solid #ddd;
+    background-color: #eef;
+    font-size: 85%;
+    padding: 0 .2em;
+}
