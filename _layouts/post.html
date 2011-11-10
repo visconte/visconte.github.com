@@ -40,9 +40,9 @@ function loadComments(data) {
 $.ajax(
 "https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments",
 {
-  headers : {"Accept": "application/vnd.github.beta.html+json"},
+  headers : {"Accept": "application/vnd.github.beta.html+json",
+		"Origin": "http://visconte.github.com"},
   dataType : "jsonp",
-  crossDomain : true,
   scriptCharset : "utf-8",
   jsonpCallback : "loadComments"
 })
