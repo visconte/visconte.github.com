@@ -14,6 +14,7 @@ layout: default
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-en-US.js"></script>
+<script type="text/javascript" src="/javascript/jquery.xdomainajax.js"></script>
 
 <div id="comments">
   <h2>Отправить комментарий</h2>
@@ -40,9 +41,9 @@ function loadComments(data) {
 $.ajax(
 "https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments",
 {
-  headers : {"Accept": "application/vnd.github.beta.html+json",
-		"Origin": "http://visconte.github.com"},
+  headers : {"Accept": "application/vnd.github.beta.html+json"},
   dataType : "jsonp",
+  crossDomain : false,
   scriptCharset : "utf-8",
   jsonpCallback : "loadComments"
 })
