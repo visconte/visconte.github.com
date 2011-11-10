@@ -64,7 +64,7 @@ a {
 
     -moz-box-shadow: 0 -.08em .08em #4771a5 inset, 0 .08em .3em -.08em #4771a5;
     -webkit-box-shadow: 0 -.08em .08em #4771a5 inset, 0 .08em .3em -.08em #4771a5;
-    -o-box-shadow: 0 -.08em .08em #4771a5 inset, 0 .08em .3em -.08em #4771a5;
+    box-shadow: 0 -.08em .08em #4771a5 inset, 0 .08em .3em -.08em #4771a5;
 }
 #footer-wrapper {
     display: table;
