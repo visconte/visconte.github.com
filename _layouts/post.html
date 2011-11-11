@@ -36,7 +36,7 @@ function loadComments(data) {
     
     $("#comments").append('<div class="avatar-bubble"> <span class="avatar"> <img width="48" height="48" src="' + cavatarlink + '"> </span> <div class="bubble"> <div class="comment"> <div class="cmeta"> <p class="author"> <span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> commented</p> <p class="date"> <a href="' + clink + '">' + cdate + '</a> </p> </div> <div class="body">' + cbody + '</div> </div> </div>');
   }
-};
+}
 
 $.ajax(
 "https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments",
