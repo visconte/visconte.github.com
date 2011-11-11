@@ -4,7 +4,7 @@ layout: default
 <!-- Syntax highlighting CSS -->
 <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
 <!-- Comments CSS -->
-<link rel="stylesheet" href="/css/comments.css" type="text/css" />
+<link rel="stylesheet" href="/css/comments-old.css" type="text/css" />
 
 <div id="post">
   <h2> {{page.title}} </h2>
@@ -13,6 +13,7 @@ layout: default
 </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="/javascript/jquery.xdomainajax.js"></script>
 <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-en-US.js"></script>
 
 <div id="comments">
@@ -31,7 +32,7 @@ function loadComments(data) {
     var clink = "https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-" + data.data[i].url.substring(data.data[i].url.lastIndexOf("/")+1);
     var cbody = data.data[i].body_html;
     var cavatarlink = data.data[i].user.avatar_url;
-    var cdate = Date.parse(data.data[i].created_at).toString("yyyy-MM-dd HH:mm:ss");
+    var cdate = Date.parse(data.data[i].created_at).toString("MMMM d, yyyy HH:mm");
     
     $("#comments").append('<div class="comment"> <div class="commentheader"> <div class="commentgravatar">' + '<img src="' + cavatarlink + '" width="20" height="20"> </div> <a class="commentuser" href="' + cuserlink + '">' + cuser + '</a> <a class="commentdate" href="' + clink + '">' + cdate + '</a> </div> <div class="commentbody">' + cbody + '</div> </div>');
   }
@@ -40,7 +41,7 @@ function loadComments(data) {
 $.ajax(
 "https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments",
 {
-  headers : {"Accept": "application/vnd.github.beta.html+json"},
+  headers : {"Accept": "application/vnd.github.html+json"},
   dataType : "jsonp",
   crossDomain : false,
   scriptCharset : "utf-8",

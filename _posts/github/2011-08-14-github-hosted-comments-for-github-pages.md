@@ -1,6 +1,7 @@
 ---
-layout: post
+layout: post-old
 title: Добавление системы комментариев в GitHub Pages
+commentIssueId: 1
 ---
 
 GitHub --- это не только статические HTML страницы, но и замечательная
