@@ -120,7 +120,7 @@ a {
     font-weight: bold;
     font-size: 12px;
     text-decoration: none;
-    text-shadow: 0 1px rgba(255,255,255,.33);
+    text-shadow: 0 1px rgba(255,255,255,.2);
 }
 
 #footer-wrapper #footer {
