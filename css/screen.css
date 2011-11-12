@@ -52,7 +52,7 @@ a {
 #crosscol-wrapper {
     display: table;
     height: 2.23em;
-    padding-left: 2em;
+    padding-left: 2.5em;
 
     background-color: #4771a5; /* for non CSS3 browsers */
     /* Mozilla Firefox 3.6+ */
@@ -114,10 +114,11 @@ a {
 }
 #crosscol-wrapper ul.PageList li {
     display: inline-block;
-    margin-right: 1em;
+    margin-right: 2em;
 }
 #crosscol-wrapper ul.PageList li a {
     font-weight: bold;
+    font-size: 12px;
     text-decoration: none;
     text-shadow: 0 1px rgba(255,255,255,.33);
 }
