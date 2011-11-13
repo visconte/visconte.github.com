@@ -9,20 +9,20 @@ body {
     height: 100%;
     text-align: left;
     font-family: Verdana,"Trebuchet MS",sans-serif;
-    font-size: 14px;
-    line-height: 21px;
+    font-size: 16px;
+    line-height: 24px;
 }
 h2, h3 {
     font-weight: normal;
     color: #29568f;
 }
 h2 {
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 28px;
+    line-height: 32px;
 }
 h3 {
-    font-size: 19px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 28px;
 }
 a { 
     outline: none; 
@@ -44,14 +44,14 @@ a {
     background: #fff;
 }
 #header-wrapper {
-    height: 5.5em;
+    height: 5.8em;
     padding-left: 3em;
     display: table;
     background: #96b1d2;
 }
 #crosscol-wrapper {
     display: table;
-    height: 2.23em;
+    height: 2.35em;
     padding-left: 2.5em;
 
     background-color: #4771a5; /* for non CSS3 browsers */
@@ -101,9 +101,9 @@ a {
     white-space: nowrap;
 }
 #header-wrapper .header a {
-    font-size: 34px;
+    font-size: 41px;
     text-decoration: none;
-    text-shadow: 0 1px rgba(255,255,255,.2);
+    text-shadow: 0 2px rgba(255,255,255,.2);
 }
 
 #crosscol-wrapper ul.PageList {
@@ -118,7 +118,7 @@ a {
 }
 #crosscol-wrapper ul.PageList li a {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     text-shadow: 0 1px rgba(255,255,255,.2);
 }
