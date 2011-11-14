@@ -9,20 +9,20 @@ body {
     height: 100%;
     text-align: left;
     font-family: Verdana,"Trebuchet MS",sans-serif;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 20px;
 }
 h2, h3 {
     font-weight: normal;
     color: #29568f;
 }
 h2 {
-    font-size: 28px;
-    line-height: 32px;
-}
-h3 {
     font-size: 24px;
     line-height: 28px;
+}
+h3 {
+    font-size: 19px;
+    line-height: 24px;
 }
 a { 
     outline: none; 
@@ -44,14 +44,14 @@ a {
     background: #fff;
 }
 #header-wrapper {
-    height: 5.8em;
+    height: 6.6em;
     padding-left: 3em;
     display: table;
     background: #96b1d2;
 }
 #crosscol-wrapper {
     display: table;
-    height: 2.35em;
+    height: 2.6em;
     padding-left: 2.5em;
 
     background-color: #4771a5; /* for non CSS3 browsers */
@@ -118,7 +118,6 @@ a {
 }
 #crosscol-wrapper ul.PageList li a {
     font-weight: bold;
-    font-size: 14px;
     text-decoration: none;
     text-shadow: 0 1px rgba(255,255,255,.2);
 }
@@ -133,23 +132,25 @@ a {
 
 #main ul, #main ol {
     list-style-position: outside;
-    margin-left: 1em;
+    margin-left: 2em;
 }
-#main ul li, #main ol li {
-    margin: .5em 0;
+#home ul {
+    list-style: none;
+    margin-left: 0;
 }
-
-#home, #post, #comments {
-    padding: 1.5em;
-    padding-left: 3em;
+#home {
+    padding: 2em 1.5em 1em 3em;
+}
+#post {
+    padding: 1.5em 1.5em 0 3em;
+    margin-bottom: 1em;
+}
+#comments {
+    padding: 0 1.5em 1em 3em;
 }
 #home > p, #post > p,
 #comments > p {
     margin: 1em 0;
-}
-#comments {
-    padding-top: 0;
-    padding-bottom: 0;
 }
 #post img {
     max-width: 90%;
