@@ -44,14 +44,14 @@ a {
     background: #fff;
 }
 #header-wrapper {
-    height: 6.6em;
+    height: 6em;
     padding-left: 3em;
     display: table;
     background: #96b1d2;
 }
 #crosscol-wrapper {
     display: table;
-    height: 2.6em;
+    height: 34px;
     padding-left: 2.5em;
 
     background-color: #4771a5; /* for non CSS3 browsers */
@@ -101,7 +101,7 @@ a {
     white-space: nowrap;
 }
 #header-wrapper .header a {
-    font-size: 41px;
+    font-size: 40px;
     text-decoration: none;
     text-shadow: 0 2px rgba(255,255,255,.2);
 }
@@ -110,7 +110,6 @@ a {
     display: table-cell;
     vertical-align: middle;
     white-space: nowrap;
-    cursor: pointer;
 }
 #crosscol-wrapper ul.PageList li {
     display: inline-block;
@@ -130,23 +129,24 @@ a {
     text-align: center;
 }
 
+#home {
+    padding: 2em 1.5em 1em 4em;
+}
+#post {
+    padding: 2em 1.5em 0 4em;
+}
+#comments {
+    padding: 0 1.5em 1em 4em;
+}
+
 #main ul, #main ol {
     list-style-position: outside;
+    margin: 1em 0;
     margin-left: 2em;
 }
 #home ul {
     list-style: none;
-    margin-left: 0;
-}
-#home {
-    padding: 2em 1.5em 1em 3em;
-}
-#post {
-    padding: 1.5em 1.5em 0 3em;
-    margin-bottom: 1em;
-}
-#comments {
-    padding: 0 1.5em 1em 3em;
+    margin: 1em 0;
 }
 #home > p, #post > p,
 #comments > p {
