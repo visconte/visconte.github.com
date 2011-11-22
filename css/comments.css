@@ -1,102 +1,165 @@
-.comment {
-    background-color: transparent;
+#comments .comment {
     border: 1px solid #cacaca;
-    color: black;
-    display: block;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding: 0;
-    width: 100%;
-}  
-.comment .commentheader {
-    background-image: url(/images/modules/comments/metabar.gif);
-    border-bottom: 1px solid #cacaca;
-    color: black;
-    display: block;
+}
+#comments .comment .cmeta {
+    height: 33px;
+    padding: 0 6px;
+    border-bottom: 1px solid #ccc;
+    background: url('/images/modules/comments/metabar.gif') 0 0 repeat-x;
+}
+#comments .comment .cmeta a { text-decoration: none; }
+#comments .comment .cmeta a:hover { text-decoration: underline; }
+#comments .comment .cmeta p.author {
+    margin: 0;
     float: left;
-    font-family: helvetica, arial, freesans, clean, sans-serif;
+    max-width: 600px;
     font-size: 12px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
     height: 33px;
     line-height: 33px;
-    margin: 0;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.7);
     overflow: hidden;
-    padding: 0;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    text-shadow: rgba(255,255,255,.7) 1px 1px;
-    white-space: nowrap;
-    width: 100%;
 }
-.comment .commentheader .commentgravatar {
-    background-color: white;
-    border: 1px solid #c8c8c8;
-    display: inline-block;
-    line-height: 1px;
-    margin: -2px 3px 0 5px;
-    padding: 1px;
-    vertical-align: middle;
-}  
-.comment .commentheader a:link {
-    text-decoration: none;
+#comments .comment .cmeta p.author a {
+    color: #222;
 }
-.comment .commentheader a:hover {
-    border-bottom: 1px solid;
+#comments .comment .cmeta p.author em a,
+#comments em.date a {
+    color: #666;
+    font-style: normal;
 }
-.comment .commentheader .commentuser {
-    color: black;
-    font-weight: bold;
-    line-height: 16px;
-    margin-left: 5px;
-    margin-right: 10px;
-    overflow: visible;
-    padding: 0;
-    text-overflow: clip;
-    text-shadow: rgba(255,255,255,.7) 1px 1px;
-    white-space: nowrap;
-}  
-.comment .commentheader .commentdate {
-    color: #777;
-    font-size: 11px;
-    line-height: 33px;
+#comments .comment .cmeta p.info {
+    float: right;
     margin: 0;
-    overflow: visible;
-    padding: 0;
-    text-overflow: clip;
-    text-shadow: rgba(255,255,255,.7) 1px 1px;
-    white-space: nowrap;
-    width: 20em;
-}  
-.comment .commentbody {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: transparent;
-    background-image: none;
-    background-origin: padding-box;
+    font-size: 11px;
+    height: 33px;
+    line-height: 33px;
+}
+#comments .comment .cmeta p.info em.date {
+    display: inline;
+    font-style: normal;
+    color: #777;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.7);
+}
+#comments .comment .cmeta p.info em.date,
+.comment .cmeta p.info em.date abbr {
+    line-height: 33px;
+}
+#comments .comment .cmeta .author .icon {
+    display: inline-block;
+    margin-top: -2px;
+    margin-left: 0;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    background: url('/images/modules/comments/icons.png') 0 0 no-repeat;
+}
+
+#comments .comment .body {
+    position: relative;
+    padding: 0 6px;
     color: #333;
-    display: block;
-    margin: 40px 1em 1em 1em; 
-    overflow: visible;
-    padding: 0;
-    position: static;
-    width: 96%;
-    word-wrap: break-word;
+    overflow: auto;
+    background: #fbfbfb;
 }
-.comment .commentbody p {
-    margin: .5em 0;
+#comments .highlighted .comment .body {
+    background: #fff;
 }
-.comment .commentbody pre {
-    border: none;
-    background-color: #eef;
-    padding: 0 .4em;
+#comments .comment .body p {
+    margin: 10px 0;
 }
-.comment .commentbody pre code {
-    border: none;
+#comments .comment .content-body img {
+    max-width: 100%;
 }
-.comment .commentbody code {
-    border: 1px solid #ddd;
-    background-color: #eef;
-    font-size: 85%;
-    padding: 0 .2em;
+#comments .comment .body .title {
+    padding: 5px 0;
+    font-weight: bold;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+}
+
+.avatar-bubble {
+    margin: 20px 0;
+    padding-left: 60px;
+    background:url('/images/modules/comments/bubble-arrow.png') 51px 20px no-repeat;
+}
+.avatar-bubble .avatar {
+    position: relative;
+    float: left;
+    margin-left: -60px;
+}
+.avatar-bubble .bubble {
+    padding: 3px;
+    background: #eee;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.avatar-bubble .avatar .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.avatar .overlay.size-48 {
+    width: 48px;
+    height: 48px;
+    background: url('/images/modules/comments/rounded-avatar-48.png') 0 0 no-repeat;
+}
+.avatar .overlay.size-24 {
+    width: 24px;
+    height: 24px;
+    background: url('/images/modules/comments/rounded-avatar-24.png') 0 0 no-repeat;
+}
+
+
+
+.wikistyle h1, .wikistyle h2, .wikistyle h3,
+.wikistyle h4, .wikistyle h5, .wikistyle h6 {
+    border:0!important;
+}
+.wikistyle h1 {
+    font-size:170%!important;
+    border-top:4px solid #aaa!important;
+    padding-top:.5em!important;
+    margin-top:1.5em!important;
+}
+.wikistyle h1:first-child {
+    margin-top:0!important;
+    padding-top:.25em!important;
+    border-top:none!important;
+}
+.wikistyle h2 {
+    font-size:150%!important;
+    margin-top:1.5em!important;
+    border-top:4px solid #e0e0e0!important;
+    padding-top:.5em!important;
+}
+.wikistyle h3 { margin-top:1em!important; }
+.wikistyle hr { border:1px solid #ddd; }
+.wikistyle blockquote {
+    margin:1em 0!important;
+    border-left:5px solid #ddd!important;
+    padding-left:.6em!important;
+    color:#555!important;
+}
+.wikistyle dt {
+    font-weight:bold!important;
+    margin-left:1em!important;
+}
+.wikistyle dd {
+    margin-left:2em!important;
+    margin-bottom:1em!important;
+}
+.wikistyle table {
+    margin:1em 0!important;
+}
+.wikistyle table th {
+    border-bottom:1px solid #bbb!important;
+    padding:.2em 1em!important;
+}
+.wikistyle table td {
+    border-bottom:1px solid #ddd!important;
+    padding:.2em 1em!important;
 }

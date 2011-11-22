@@ -51,7 +51,21 @@ Linux. Загружаемся с LiveCD и входим в интерактив�
 осуществляется по нажатию `q`).
 
 Вот пример полученной таблицы разделов:
+
 {% highlight bash %}
+root@vovchik:/home/user# fdisk -l /dev/sdb
+
+Диск /dev/sdb: 320.1 ГБ, 320072933376 байт
+255 heads, 63 sectors/track, 38913 cylinders
+Units = цилиндры of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x0004453e
+
+Устр-во Загр     Начало       Конец       Блоки   Id  Система
+{% endhighlight %}
+
+{% highlight console %}
 root@vovchik:/home/user# fdisk -l /dev/sdb
 
 Диск /dev/sdb: 320.1 ГБ, 320072933376 байт

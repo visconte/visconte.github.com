@@ -8,7 +8,7 @@ layout: default
 
 <div id="post">
   <h2> {{page.title}} </h2>
-  <p class="meta"> {{page.date | date_to_string}} </p>
+  <p> {{page.date | date_to_string}} </p>
   {{content}}
 </div>
 
@@ -33,7 +33,7 @@ function loadComments(data) {
     var cavatarlink = data.data[i].user.avatar_url;
     var cdate = Date.parse(data.data[i].created_at).toString("MMMM d, yyyy HH:mm");
     
-    $("#comments").append('<div class="avatar-bubble"> <span class="avatar"> <img width="48" height="48" src="' + cavatarlink + '"> </span> <div class="bubble"> <div class="comment"> <div class="cmeta"> <p class="author"> <span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> commented</p> <p class="date"> <a href="' + clink + '">' + cdate + '</a> </p> </div> <div class="body">' + cbody + '</div> </div> </div>');
+    $("#comments").append('<div class="avatar-bubble"> <span class="avatar"> <img width="48" height="48" src="' + cavatarlink + '"> <span class="overlay size-48"/> </span> <div class="bubble"> <div class="comment"> <div class="cmeta"> <p class="author"> <span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> <em class="action-text"> <a href="' + clink + '">комментирует</a> </em> </p> <p class="info"> <em class="date"> <a href="' + clink + '">' + cdate + '</a> </em> </p> </div> <div class="body wikistyle">' + cbody + '</div> </div> </div>');
   }
 }
 
