@@ -1,88 +1,7 @@
-#comments .comment {
-    border: 1px solid #cacaca;
-}
-#comments .comment .cmeta {
-    height: 33px;
-    padding: 0 6px;
-    border-bottom: 1px solid #ccc;
-    background: url('/images/modules/comments/metabar.gif') 0 0 repeat-x;
-}
-#comments .comment .cmeta a { text-decoration: none; }
-#comments .comment .cmeta a:hover { text-decoration: underline; }
-#comments .comment .cmeta p.author {
-    margin: 0;
-    float: left;
-    max-width: 600px;
-    font-size: 12px;
-    height: 33px;
-    line-height: 33px;
-    text-shadow: 1px 1px 0 rgba(255,255,255,.7);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-#comments .comment .cmeta p.author a {
-    color: #222;
-}
-#comments .comment .cmeta p.author em a,
-#comments em.date a {
-    color: #666;
-    font-style: normal;
-}
-#comments .comment .cmeta p.info {
-    float: right;
-    margin: 0;
-    font-size: 11px;
-    height: 33px;
-    line-height: 33px;
-}
-#comments .comment .cmeta p.info em.date {
-    display: inline;
-    font-style: normal;
-    color: #777;
-    text-shadow: 1px 1px 0 rgba(255,255,255,.7);
-}
-#comments .comment .cmeta p.info em.date,
-.comment .cmeta p.info em.date abbr {
-    line-height: 33px;
-}
-#comments .comment .cmeta .author .icon {
-    display: inline-block;
-    margin-top: -2px;
-    margin-left: 0;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    background: url('/images/modules/comments/icons.png') 0 0 no-repeat;
-}
-
-#comments .comment .body {
-    position: relative;
-    padding: 0 6px;
-    color: #333;
-    overflow: auto;
-    background: #fbfbfb;
-}
-#comments .highlighted .comment .body {
-    background: #fff;
-}
-#comments .comment .body p {
-    margin: 10px 0;
-}
-#comments .comment .content-body img {
-    max-width: 100%;
-}
-#comments .comment .body .title {
-    padding: 5px 0;
-    font-weight: bold;
-    color: #000;
-    border-bottom: 1px solid #ddd;
-}
-
 .avatar-bubble {
     margin: 20px 0;
     padding-left: 60px;
-    background:url('/images/modules/comments/bubble-arrow.png') 51px 20px no-repeat;
+    background: url('/images/modules/comments/bubble-arrow.png') 51px 20px no-repeat;
 }
 .avatar-bubble .avatar {
     position: relative;
@@ -102,64 +21,49 @@
     top: 0;
     left: 0;
 }
-.avatar .overlay.size-48 {
+.avatar-bubble .avatar .overlay.size-48 {
     width: 48px;
     height: 48px;
     background: url('/images/modules/comments/rounded-avatar-48.png') 0 0 no-repeat;
 }
-.avatar .overlay.size-24 {
-    width: 24px;
-    height: 24px;
-    background: url('/images/modules/comments/rounded-avatar-24.png') 0 0 no-repeat;
+.avatar-bubble .comment {
+    border: 1px solid #cacaca;
+}
+.avatar-bubble .comment .cmeta {
+    height: 33px;
+    padding: 0 6px;
+    border-bottom: 1px solid #ccc;
+    background: url('/images/modules/comments/metabar.gif') 0 0 repeat-x;
+}
+.avatar-bubble .comment .body {
+    position: relative;
+    padding: 0 6px;
+    overflow: auto;
+    background: #fbfbfb;
 }
 
-
-
-.wikistyle h1, .wikistyle h2, .wikistyle h3,
-.wikistyle h4, .wikistyle h5, .wikistyle h6 {
-    border:0!important;
+#comments .comment .cmeta p.author,
+#comments .comment .cmeta p.date {
+    margin: 0;
+    font-size: 12px;
+    height: 33px;
+    line-height: 33px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.7);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.wikistyle h1 {
-    font-size:170%!important;
-    border-top:4px solid #aaa!important;
-    padding-top:.5em!important;
-    margin-top:1.5em!important;
+#comments .comment .cmeta p.author { float: left; }
+#comments .comment .cmeta p.date { float: right; }
+#comments .comment .cmeta p.author .icon {
+    display: inline-block;
+    margin-top: -2px;
+    margin-left: 0;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    background: url('/images/modules/comments/icons.png') 0 0 no-repeat;
 }
-.wikistyle h1:first-child {
-    margin-top:0!important;
-    padding-top:.25em!important;
-    border-top:none!important;
-}
-.wikistyle h2 {
-    font-size:150%!important;
-    margin-top:1.5em!important;
-    border-top:4px solid #e0e0e0!important;
-    padding-top:.5em!important;
-}
-.wikistyle h3 { margin-top:1em!important; }
-.wikistyle hr { border:1px solid #ddd; }
-.wikistyle blockquote {
-    margin:1em 0!important;
-    border-left:5px solid #ddd!important;
-    padding-left:.6em!important;
-    color:#555!important;
-}
-.wikistyle dt {
-    font-weight:bold!important;
-    margin-left:1em!important;
-}
-.wikistyle dd {
-    margin-left:2em!important;
-    margin-bottom:1em!important;
-}
-.wikistyle table {
-    margin:1em 0!important;
-}
-.wikistyle table th {
-    border-bottom:1px solid #bbb!important;
-    padding:.2em 1em!important;
-}
-.wikistyle table td {
-    border-bottom:1px solid #ddd!important;
-    padding:.2em 1em!important;
-}
+#comments .comment .cmeta p.author strong a { color: #222; }
+#comments .comment .cmeta p.author a { color: #666; }
+#comments .comment .cmeta p.date a { color: #777; }
