@@ -18,7 +18,8 @@ a:active { outline: none; }
 #outer-wrapper,
 #header-wrapper,
 #crosscol-wrapper,
-#footer-wrapper {
+#main {
+    position: relative;
     clear: both;
     width: 100%;
 }
@@ -26,49 +27,32 @@ a:active { outline: none; }
     min-height: 100%;
     background: white;
     overflow: hidden;
-    position: relative;
 }
 #header-wrapper {
-    height: 54px;
-    padding-left: 3em;
+    height: 58px;
     display: table;
+    padding-left: 10em;
     background: #4771a5;
-    position: relative;
 }
 #crosscol-wrapper {
     display: table;
     height: 26px;
-    padding-left: 3em;
-    position: relative;
+    padding-left: 10em;
 
     background-color: #96b1d2;
     box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
     -moz-box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
     -webkit-box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
 }
+#main { margin-bottom: 4em; }
 #footer-wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     display: table;
     height: 4em;
     margin-top: -4em;
     background: #4771a5;
-    position: absolute;
-    bottom: 0;
-}
-
-#main, #right-col {
-    position: relative;
-    margin-bottom: 4em;
-}
-#main {
-    left: 0;
-    width: 75%;
-}
-#right-col {
-    left: 1%;
-    width: 23%;
-}
-#right-col-1 {
-    display: none;
 }
 
 #header-wrapper .header {
