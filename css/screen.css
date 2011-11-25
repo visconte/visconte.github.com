@@ -31,14 +31,11 @@ a:active { outline: none; }
 #header-wrapper {
     height: 58px;
     display: table;
-    padding-left: 10em;
     background: #4771a5;
 }
 #crosscol-wrapper {
     display: table;
     height: 26px;
-    padding-left: 10em;
-
     background-color: #96b1d2;
     box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
     -moz-box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
@@ -58,6 +55,7 @@ a:active { outline: none; }
 #header-wrapper .header {
     display: table-cell;
     vertical-align: middle;
+    padding-left: 10em;
     white-space: nowrap;
 }
 #header-wrapper .header a {
@@ -68,6 +66,7 @@ a:active { outline: none; }
 #crosscol-wrapper ul.PageList {
     display: table-cell;
     vertical-align: middle;
+    padding-left: 10em;
     white-space: nowrap;
 }
 #crosscol-wrapper ul.PageList li {

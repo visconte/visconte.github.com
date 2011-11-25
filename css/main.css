@@ -96,9 +96,6 @@ table td {
     border-bottom: 1px solid #ddd;
     padding: .2em 1em;
 }
-pre, code {
-    font-family: 14px 'Bitstream Vera Sans Mono','Courier',monospace;
-}
 pre {
     background-color: #eee;
     border: 1px solid #ddd;
@@ -137,10 +134,12 @@ pre code {
     padding: 0 !important;
     background-color: #eee !important;
     border: none !important;
+    white-space: pre !important;
 }
 code {
     color: #444;
     padding: 0 .2em;
     background-color: #f8f8f8;
     border: 1px solid #dedede;
+    white-space: nowrap;
 }
