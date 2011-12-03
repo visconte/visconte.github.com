@@ -50,7 +50,7 @@
     margin-bottom: 0 !important;
 }
 
-img { max-width:100%; }
+img { max-width: 90%; }
 .float-left {
     float: left;
     padding:. 5em 1em .25em 0;

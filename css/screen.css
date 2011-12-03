@@ -25,6 +25,7 @@ a:active { outline: none; }
 }
 #outer-wrapper {
     min-height: 100%;
+    min-width: 800px;
     background: white;
     overflow: hidden;
 }
@@ -37,9 +38,9 @@ a:active { outline: none; }
     display: table;
     height: 26px;
     background-color: #96b1d2;
-    box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
-    -moz-box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
-    -webkit-box-shadow: 0 .08em .3em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
+    box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
+    -moz-box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
+    -webkit-box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
 }
 #main { margin-bottom: 4em; }
 #footer-wrapper {
