@@ -10,19 +10,23 @@ layout: default
   <h1> {{page.title}} </h1>
   <p> {{page.date | date_to_string}} </p>
   {{content}}
-</div>
+  <p><a href="#header-wrapper">К началу</a></p>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
 
-<div id="comments">
-  <h2>Отправить комментарий</h2>
-  <p>
-    Чтобы отправить комментарий, перейдите
-    на <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">
-    страницу комментариев на GitHub</a>. (Необходима регистрация на
-    GitHub. Как? Неужели, вы ещё не завели аккаунта?!)
-  </p>
+  <div id="comments">
+    <h2>Отправить комментарий</h2>
+    <p>
+      Чтобы отправить комментарий, перейдите
+      на <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">страницу
+      комментариев на
+      GitHub</a>. (Необходима <a href="https://github.com/signup/free">регистрация
+      на GitHub</a>. Как? Неужели, вы ещё не завели аккаунта?!)
+    </p>
+  </div>
+
+  <p><a href="#header-wrapper">К началу</a></p>
 </div>
 
 <script type="text/javascript">
@@ -36,7 +40,7 @@ function loadComments(data) {
     var cavatarlink = data.data[i].user.avatar_url;
     var cdate = Date.parse(data.data[i].created_at).toString("MMMM d, yyyy HH:mm");
     
-    $("#comments").append('<div class="avatar-bubble"><span class="avatar"><img width="48" height="48" src="' + cavatarlink + '"><span class="overlay size-48"/></span><div class="bubble"><div class="comment"><div class="cmeta"><p class="author"><span class="icon"></span><strong><a href="' + cuserlink + '">' + cuser + '</a></strong> <a href="' + clink + '">комментирует</a></p><p class="date"><a href="' + clink + '">' + cdate + '</a></p></div><div class="body">' + cbody + '</div></div></div>');
+    $("#comments").append('<div class="avatar-bubble"><span class="avatar"><img width="48" height="48" src="' + cavatarlink + '"><span class="overlay size-48"/></span><div class="bubble"><div class="comment"><div class="cmeta"><p class="author"><span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> <a href="' + clink + '">комментирует</a></p><p class="date"><a href="' + clink + '">' + cdate + '</a></p></div><div class="body">' + cbody + '</div></div></div>');
   };
 };
 

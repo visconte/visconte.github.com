@@ -16,6 +16,7 @@
     border-radius: 3px;
 }
 
+.avatar-bubble .avatar img { max-width: 100% !important; }
 .avatar-bubble .avatar .overlay {
     position: absolute;
     top: 0;
@@ -67,3 +68,4 @@
 #comments .comment .cmeta p.author strong a { color: #222; }
 #comments .comment .cmeta p.author a { color: #666; }
 #comments .comment .cmeta p.date a { color: #777; }
+#comments .comment .body img { max-width: 100%; }

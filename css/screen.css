@@ -78,6 +78,9 @@ a:active { outline: none; }
     color: #29568f;
     text-shadow: 0 1px rgba(255,255,255,.2);
 }
+
+#home, #post { padding: 1.5em 10em 1.5em 10em; }
+
 #footer-wrapper #footer {
     display: table-cell;
     vertical-align: middle;
