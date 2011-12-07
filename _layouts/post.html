@@ -10,7 +10,7 @@ layout: default
   <h1> {{page.title}} </h1>
   <p> {{page.date | date_to_string}} </p>
   {{content}}
-  <p><a href="#header-wrapper">К началу</a></p>
+  <p><a href="#header-wrapper">В начало</a></p>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
@@ -26,7 +26,7 @@ layout: default
     </p>
   </div>
 
-  <p><a href="#header-wrapper">К началу</a></p>
+  <p><a href="#header-wrapper">В начало</a></p>
 </div>
 
 <script type="text/javascript">
@@ -34,8 +34,8 @@ layout: default
 function loadComments(data) {
   for (var i=0; i<data.data.length; i++) {
     var cuser = data.data[i].user.login;
-    var cuserlink = "https://www.github.com/" + cuser;
-    var clink = "https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-" + data.data[i].url.substring(data.data[i].url.lastIndexOf("/")+1);
+    var cuserlink = 'https://www.github.com/' + cuser;
+    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-' + data.data[i].id;
     var cbody = data.data[i].body_html;
     var cavatarlink = data.data[i].user.avatar_url;
     var cdate = Date.parse(data.data[i].created_at).toString("MMMM d, yyyy HH:mm");

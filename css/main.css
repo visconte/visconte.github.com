@@ -1,12 +1,15 @@
 #main a { color: #29568f; }
 #main a:hover { text-decoration: underline; }
-#main h1, #main h2, #main h3 { color: #4771a5; }
-#main h1 {
-    font-size: 170%;
+#main h1, #main h2, #main h3 { font-weight: normal; }
+#main h1, #main h2 {
+    color: #4771a5;
     line-height: 1.2em;
     margin-top: 1em;
-    border-top: 4px solid #aaa;
     padding-top: .5em;
+}
+#main h1 {
+    font-size: 170%;
+    border-top: 4px solid #aaa;
 }
 #main h1:first-child {
     margin-top: 0 !important;
@@ -15,12 +18,10 @@
 }
 #main h2 {
     font-size: 150%;
-    line-height: 1.2em;
-    margin-top: 1em;
     border-top: 4px solid #e0e0e0;
-    padding-top: .5em;
 }
 #main h3 {
+    color: #29568f;
     font-size: 120%;
     line-height: 1.2em;
     margin-top: 1em;
