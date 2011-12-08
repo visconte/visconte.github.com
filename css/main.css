@@ -27,7 +27,6 @@
     margin-top: 1em;
 }
 #main p { margin: 1em 0; }
-#main p:last-child { margin-bottom: 0 !important; }
 #main ul, #main ol {
     list-style-position: outside;
     margin: 1em 0 1em 2em;
@@ -41,7 +40,21 @@
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
-#main img { max-width: 90%; }
+#main img {
+    margin: 1em 0;
+    padding: .3em;
+    border: 1px solid #ddd;
+    max-width: 100%;
+}
+#main img.emoji {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 24px;
+    width: 24px;
+    vertical-align: bottom;
+}
+#main p img { margin: 0; }
 
 .float-left {
     float: left;
