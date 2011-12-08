@@ -19,8 +19,7 @@ a {
 
 #outer-wrapper,
 #header-wrapper,
-#crosscol-wrapper,
-#main {
+#crosscol-wrapper {
     position: relative;
     clear: both;
     width: 100%;
@@ -44,7 +43,12 @@ a {
     -moz-box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
     -webkit-box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
 }
-#main { margin-bottom: 4em; }
+#main {
+    position: relative;
+    clear: both;
+    margin-bottom: 4em;
+    padding: 1.5em 10em 1.5em 10em;
+}
 #footer-wrapper {
     position: absolute;
     width: 100%;
@@ -80,8 +84,6 @@ a {
     color: #29568f;
     text-shadow: 0 1px rgba(255,255,255,.2);
 }
-
-#home, #post { padding: 1.5em 10em 1.5em 10em; }
 
 #footer-wrapper #footer {
     display: table-cell;

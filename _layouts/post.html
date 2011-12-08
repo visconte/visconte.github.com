@@ -1,33 +1,26 @@
 ---
 layout: default
 ---
-<!-- Syntax highlighting CSS -->
-<link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-<!-- Comments CSS -->
-<link rel="stylesheet" href="/css/comments.css" type="text/css" />
+<h1> {{page.title}} </h1>
+<p>{{page.date | date_to_string}}</p>
+{{content}}
+<p><a href="#header-wrapper">В начало</a></p>
 
-<div id="post">
-  <h1> {{page.title}} </h1>
-  <p> {{page.date | date_to_string}} </p>
-  {{content}}
-  <p><a href="#header-wrapper">В начало</a></p>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
-
-  <div id="comments">
-    <h2>Отправить комментарий</h2>
-    <p>
-      Чтобы отправить комментарий, перейдите
-      на <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">страницу
-      комментариев на
-      GitHub</a>. (Необходима <a href="https://github.com/signup/free">регистрация
-      на GitHub</a>. Как? Неужели, вы ещё не завели аккаунта?!)
-    </p>
-  </div>
-
-  <p><a href="#header-wrapper">В начало</a></p>
+<div id="comments">
+  <h2>Отправить комментарий</h2>
+  <p>
+    Чтобы отправить комментарий, перейдите
+    на <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">страницу
+    комментариев на
+    GitHub</a>. (Необходима <a href="https://github.com/signup/free">регистрация
+    на GitHub</a>. Как? Неужели, вы ещё не завели аккаунта?!)
+  </p>
 </div>
+
+<p><a href="#header-wrapper">В начало</a></p>
 
 <script type="text/javascript">
 
