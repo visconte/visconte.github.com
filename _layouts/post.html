@@ -12,30 +12,26 @@ layout: default
 <div id="comments">
   <h2>Отправить комментарий</h2>
   <p>
-    Чтобы отправить комментарий, перейдите
-    на <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">страницу
-    комментариев на
-    GitHub</a>. (Необходима <a href="https://github.com/signup/free">регистрация
-    на GitHub</a>. Как? Неужели, вы ещё не завели аккаунта?!)
+    Комментарии блога предоставлены
+    сервисом <a href="https://github.com/">GitHub</a>. Вы можете
+    отправить комментарий
+    с <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">данной
+    страницы</a>
+    (необходима <a href="https://github.com/signup/free">регистрация
+    на GitHub</a>) или связаться со мной
+    по <span class="user-email"></span>.
   </p>
 </div>
 
-<p style="margin-bottom:0"><a href="#header-wrapper">В начало</a></p>
-
 <script type="text/javascript">
 
-function loadComments(data) {
-  for (var i=0; i<data.data.length; i++) {
-    var cuser = data.data[i].user.login;
-    var cuserlink = 'https://www.github.com/' + cuser;
-    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-' + data.data[i].id;
-    var cbody = data.data[i].body_html;
-    var cavatarlink = data.data[i].user.avatar_url;
-    var cdate = Date.parse(data.data[i].created_at).toString("MMMM d, yyyy HH:mm");
-    
-    $("#comments").append('<div class="avatar-bubble"><span class="avatar"><img width="48" height="48" src="' + cavatarlink + '"><span class="overlay size-48"/></span><div class="bubble"><div class="comment"><div class="cmeta"><p class="author"><span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> <a href="' + clink + '">комментирует</a></p><p class="date"><a href="' + clink + '">' + cdate + '</a></p></div><div class="body">' + cbody + '</div></div></div>');
-  };
-};
+$.ajax(
+"https://api.github.com/users/visconte",
+{
+  dataType : "jsonp",
+  crossDomain : false,
+  jsonpCallback : "loadUserInfo"
+});
 
 $.ajax(
 "https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments",
@@ -46,4 +42,23 @@ $.ajax(
   scriptCharset : "utf-8",
   jsonpCallback : "loadComments"
 });
+
+function loadUserInfo(info) {
+$('.user-email').append('<a href="mailto:' + info.data.email + '?subject=Комментарий к посту &laquo;{{ page.title }}&raquo;">email</a>')
+};
+
+function loadComments(comments) {
+  for (var i=0; i<comments.data.length; i++) {
+    var cuser = comments.data[i].user.login;
+    var cuserlink = 'https://www.github.com/' + cuser;
+    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-' + comments.data[i].id;
+    var cbody = comments.data[i].body_html;
+    var cavatarlink = comments.data[i].user.avatar_url;
+    var cdate = Date.parse(comments.data[i].created_at).toString("MMMM d, yyyy HH:mm");
+    
+    $('#comments').append('<div class="avatar-bubble"><span class="avatar"><img width="48" height="48" src="' + cavatarlink + '"><span class="overlay size-48"/></span><div class="bubble"><div class="comment"><div class="cmeta"><p class="author"><span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> <a href="' + clink + '">комментирует</a></p><p class="date"><a href="' + clink + '">' + cdate + '</a></p></div><div class="body">' + cbody + '</div></div></div>')
+  }
+};
 </script>
+
+<p style="margin-bottom:0"><a href="#header-wrapper">В начало</a></p>
