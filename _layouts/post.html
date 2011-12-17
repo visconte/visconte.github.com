@@ -4,7 +4,7 @@ layout: default
 <h1>{{ page.title }}</h1>
 <p>{{ page.date | date_to_string }}</p>
 {{ content }}
-<p><a href="#header-wrapper">В начало</a></p>
+<p><a href="#">Наверх</a></p>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
@@ -15,26 +15,28 @@ layout: default
     Комментарии блога предоставлены
     сервисом <a href="https://github.com/">GitHub</a>. Вы можете
     отправить комментарий
-    с <a href="https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#discussion_bucket">данной
+    с <a href="https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#discussion_bucket">данной
     страницы</a>
     (необходима <a href="https://github.com/signup/free">регистрация
     на GitHub</a>) или связаться со мной
-    по <span class="user-email"></span>.
+    по <a class="user-email">email</a>.
   </p>
 </div>
 
 <script type="text/javascript">
 
-$.ajax(
-"https://api.github.com/users/visconte",
+$.ajax("https://api.github.com/users/visconte",
 {
   dataType : "jsonp",
   crossDomain : false,
   jsonpCallback : "loadUserInfo"
 });
 
-$.ajax(
-"https://api.github.com/repos/visconte/visconte.github.com/issues/{{page.commentIssueId}}/comments",
+function loadUserInfo(info) {
+$('a.user-email').prop('href', 'mailto:' + info.data.email + '?subject=Комментарий к посту "{{ page.title }}"')
+};
+
+$.ajax("https://api.github.com/repos/visconte/visconte.github.com/issues/{{ page.commentIssueId }}/comments",
 {
   headers : {"Accept": "application/vnd.github.html+json"},
   dataType : "jsonp",
@@ -43,15 +45,11 @@ $.ajax(
   jsonpCallback : "loadComments"
 });
 
-function loadUserInfo(info) {
-$('.user-email').append('<a href="mailto:' + info.data.email + '?subject=Комментарий к посту &laquo;{{ page.title }}&raquo;">email</a>')
-};
-
 function loadComments(comments) {
   for (var i=0; i<comments.data.length; i++) {
     var cuser = comments.data[i].user.login;
     var cuserlink = 'https://www.github.com/' + cuser;
-    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{page.commentIssueId}}#issuecomment-' + comments.data[i].id;
+    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#issuecomment-' + comments.data[i].id;
     var cbody = comments.data[i].body_html;
     var cavatarlink = comments.data[i].user.avatar_url;
     var cdate = Date.parse(comments.data[i].created_at).toString("MMMM d, yyyy HH:mm");
@@ -61,4 +59,4 @@ function loadComments(comments) {
 };
 </script>
 
-<p style="margin-bottom:0"><a href="#header-wrapper">В начало</a></p>
+<p style="margin-bottom:0"><a href="#">Наверх</a></p>

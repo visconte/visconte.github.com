@@ -6,7 +6,7 @@ title: Сферический блог в вакууме
 <ul type="none" style="margin-left:0">
   {% for post in site.posts %}
   <li>
-    <span>{{ post.date | date: "%B %e, %Y" }}</span> <a href="{{ post.url }}">{{ post.title }}</a>
+    <span>{{ post.date | date: "%B %e, %Y" }}</span> <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
   </li>
   {% endfor %}
 </ul>

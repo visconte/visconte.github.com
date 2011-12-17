@@ -1,7 +1,9 @@
+---
+---
 .avatar-bubble {
     margin: 20px 0;
     padding-left: 60px;
-    background: url('/images/modules/comments/bubble-arrow.png') 51px 20px no-repeat;
+    background: url('{{ site.baseurl }}/images/modules/comments/bubble-arrow.png') 51px 20px no-repeat;
 }
 .avatar-bubble .avatar {
     position: relative;
@@ -29,7 +31,7 @@
 .avatar-bubble .avatar .overlay.size-48 {
     width: 48px;
     height: 48px;
-    background: url('/images/modules/comments/rounded-avatar-48.png') 0 0 no-repeat;
+    background: url('{{ site.baseurl }}/images/modules/comments/rounded-avatar-48.png') 0 0 no-repeat;
 }
 .avatar-bubble .comment {
     border: 1px solid #cacaca;
@@ -38,7 +40,7 @@
     height: 33px;
     padding: 0 6px;
     border-bottom: 1px solid #ccc;
-    background: url('/images/modules/comments/metabar.gif') 0 0 repeat-x;
+    background: url('{{ site.baseurl }}/images/modules/comments/metabar.gif') 0 0 repeat-x;
 }
 .avatar-bubble .comment .body {
     position: relative;
@@ -67,7 +69,7 @@
     width: 16px;
     height: 16px;
     vertical-align: middle;
-    background: url('/images/modules/comments/icons.png') 0 0 no-repeat;
+    background: url('{{ site.baseurl }}/images/modules/comments/icons.png') 0 0 no-repeat;
 }
 #comments .comment .cmeta p.author strong a { color: #222; }
 #comments .comment .cmeta p.author a { color: #666; }
