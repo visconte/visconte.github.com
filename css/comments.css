@@ -1,52 +1,14 @@
 ---
 ---
-.avatar-bubble {
-    margin: 20px 0;
-    padding-left: 60px;
-    background: url('{{ site.baseurl }}/images/modules/comments/bubble-arrow.png') 51px 20px no-repeat;
-}
-.avatar-bubble .avatar {
-    position: relative;
-    float: left;
-    margin-left: -60px;
-}
-.avatar-bubble .bubble {
-    padding: 3px;
-    background: #eee;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-}
-
-.avatar-bubble .avatar img {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-}
-.avatar-bubble .avatar .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.avatar-bubble .avatar .overlay.size-48 {
-    width: 48px;
-    height: 48px;
-    background: url('{{ site.baseurl }}/images/modules/comments/rounded-avatar-48.png') 0 0 no-repeat;
-}
-.avatar-bubble .comment {
+#comments .comment {
+    margin: 10px 0;
     border: 1px solid #cacaca;
 }
-.avatar-bubble .comment .cmeta {
+#comments .comment .cmeta {
     height: 33px;
-    padding: 0 6px;
+    padding: 0 10px;
     border-bottom: 1px solid #ccc;
-    background: url('{{ site.baseurl }}/images/modules/comments/metabar.gif') 0 0 repeat-x;
-}
-.avatar-bubble .comment .body {
-    position: relative;
-    padding: 0 6px;
-    overflow: auto;
-    background: #fbfbfb;
+    background: url("{{ site.url }}/images/modules/comments/metabar.gif") 0 0 repeat-x;
 }
 
 #comments .comment .cmeta p.author,
@@ -56,21 +18,39 @@
     height: 33px;
     line-height: 33px;
     text-shadow: 1px 1px 0 rgba(255,255,255,.7);
+}
+#comments .comment .cmeta p.author {
+    float: left;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-#comments .comment .cmeta p.author { float: left; }
 #comments .comment .cmeta p.date { float: right; }
-#comments .comment .cmeta p.author .icon {
+
+#comments .cmeta p.author a, #comments .cmeta p.date a { color: #666; }
+#comments .cmeta p.author strong a { color: #222; }
+#comments .comment .cmeta .gravatar {
     display: inline-block;
     margin-top: -2px;
-    margin-left: 0;
+    margin-right: 3px;
+    padding: 1px;
+    line-height: 1px;
+    vertical-align: middle;
+    font-size: 1px;
+    background: #fff;
+    border: 1px solid #c8c8c8;
+}
+#comments .comment .cmeta .gravatar img { border: 0; }
+#comments .comment .cmeta .icon {
+    display: inline-block;
+    margin-top: -2px;
+    margin-left: 5px;
     width: 16px;
     height: 16px;
     vertical-align: middle;
-    background: url('{{ site.baseurl }}/images/modules/comments/icons.png') 0 0 no-repeat;
+    background: url("{{ site.url }}/images/modules/comments/icons.png") 0 0 no-repeat;
 }
-#comments .comment .cmeta p.author strong a { color: #222; }
-#comments .comment .cmeta p.author a { color: #666; }
-#comments .comment .cmeta p.date a { color: #777; }
+
+#comments .comment .body { padding: 0 10px; }
+#comments .comment .body > *:first-child { margin-top: 10px !important; }
+#comments .comment .body > *:last-child { margin-bottom: 10px !important; }

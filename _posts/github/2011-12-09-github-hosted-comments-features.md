@@ -34,7 +34,7 @@ Issue-трекер GitHub, хранящий комментарии блога и
 и используют его повсеместно, в том числе --- в комментариях.
 
 ### Выражайте эмоции посредством Emoji
-{: #section-emoji}
+{: #section-emoji }
 
 Достигнуть эффекта большей выразительности и эмоциональности вам
 поможет уникальный набор иконок Emoji. GitHub использует
@@ -52,7 +52,7 @@ ul#github-emoji li {
 </style>
 
 {% for item in (1..75) %}{% capture imoji_name %}{% cycle '+1', '-1', 'airplane', 'apple', 'art', 'bear', 'beer', 'bike', 'bomb', 'book', 'broken_heart', 'bulb', 'bus', 'cake', 'calling', 'cat', 'clap', 'computer', 'cool', 'cop', 'couple', 'dog', 'dolphin', 'email', 'feet', 'fire', 'fish', 'fist', 'gift', 'hammer', 'heart', 'horse', 'iphone', 'key', 'kiss', 'koala', 'leaves', 'lips', 'lipstick', 'lock', 'mag', 'mega', 'memo', 'metal', 'moneybag', 'nail_care', 'new', 'octocat', 'ok', 'pencil', 'princess', 'punch', 'rainbow', 'rose', 'runner', 'scissors', 'shipit', 'ski', 'smoking', 'sparkles', 'star', 'sunflower', 'sunny', 'taxi', 'thumbsdown', 'thumbsup', 'tm', 'tophat', 'train', 'v', 'vs', 'warning', 'wheelchair', 'zap', 'zzz' %}{% endcapture %}
-* ![:{{ imoji_name }}:]({{ site.url }}/images/icons/emoji/{{ imoji_name }}.png ":{{ imoji_name }}:"){: .emoji} `:{{ imoji_name }}:`{% endfor %}
+* ![:{{ imoji_name }}:]({{ site.cloud }}/images/icons/emoji/{{ imoji_name }}.png ":{{ imoji_name }}:"){: .emoji} `:{{ imoji_name }}:`{% endfor %}
 {: #github-emoji}
 
 ### Принимайте участие в дискуссиях
@@ -61,46 +61,40 @@ ul#github-emoji li {
 комментарии набрать `@имя_пользователя`, и ваш собеседник получит
 уведомление об этом.
 
-![]({{ site.dropbox }}/visconte.github.com/images/github/mentioning-in-a-comment.jpg)
-{: .align-center}
+[![]({{ site.cloud }}/images/github/mentioning-in-a-comment.jpg)]({{ site.cloud }}/images/github/mentioning-in-a-comment.jpg){: .lightbox }
 
 Если вы оставили комментарий к посту или получили приглашение, вы
 будете автоматически подписаны на всё дальнейшее обсуждение. Ссылка
 внизу страницы с комментариями позволяет подписаться на дискуссию
 самостоятельно или, наоборот, отписаться от неё.
 
-![]({{ site.dropbox }}/visconte.github.com/images/github/comments-notifications.jpg)
-{: .align-center}
+[![]({{ site.cloud }}/images/github/comments-notifications.jpg)]({{ site.cloud }}/images/github/comments-notifications.jpg){: .lightbox }
 
 Если нет желания вступать в дискуссии, то оповещения о вашем
 упоминании в комментариях можно отключить в
 [Notification Center](https://github.com/account/notifications).
 
-![]({{ site.dropbox }}/visconte.github.com/images/github/managing-notifications.jpg)
-{: .align-center}
+[![]({{ site.cloud }}/images/github/managing-notifications.jpg)]({{ site.cloud }}/images/github/managing-notifications.jpg){: .lightbox }
 
 ### Отправляйте ответы по email
 
 Свой ответ на комментарий вы можете послать по email, используя
 почтовый ящик, указанный в аккаунте GitHub.
 
-![]({{ site.dropbox }}/visconte.github.com/images/github/sending-an-email.jpg)
-{: .align-center}
+[![]({{ site.cloud }}/images/github/sending-an-email.jpg)]({{ site.cloud }}/images/github/sending-an-email.jpg){: .lightbox }
 
 На сегодняшний день обеспечена поддержка только простого текста,
 поэтому вставки HTML-кода и прикреплённые файлы
 игнорируются. Отправленный по email ответ будет опубликован в
 комментариях.
 
-![]({{ site.dropbox }}/visconte.github.com/images/github/plaintext-comment.jpg)
-{: .align-center}
+[![]({{ site.cloud }}/images/github/plaintext-comment.jpg)]({{ site.cloud }}/images/github/plaintext-comment.jpg){: .lightbox }
 
 ### Используйте поиск по комментариям
 
 Данный поиск доступен на странице с комментариями.
 
-![]({{ site.dropbox }}/visconte.github.com/images/github/issue-search.png)
-{: .align-center}
+[![]({{ site.cloud }}/images/github/issue-search.png)]({{ site.cloud }}/images/github/issue-search.png){: .lightbox }
 
 ### Полезные ссылки
 

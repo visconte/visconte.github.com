@@ -7,9 +7,9 @@ body {
     width: 100%;
     height: 100%;
     text-align: left;
-    font-family: Verdana,"Trebuchet MS",sans-serif;
+    font-family: Verdana,Arial,"Trebuchet MS",sans-serif;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 1.5em;
     color: black;
 }
 a {
@@ -46,8 +46,11 @@ a {
 #main {
     position: relative;
     clear: both;
-    margin-bottom: 4em;
-    padding: 1.5em 10em 1.5em 10em;
+    display: block;
+    width: 35em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 4em;
 }
 #footer-wrapper {
     position: absolute;
@@ -55,14 +58,14 @@ a {
     bottom: 0;
     display: table;
     height: 4em;
-    margin-top: -4em;
+    padding-top: -4em;
     background: #4771a5;
 }
 
 #header-wrapper .header {
     display: table-cell;
     vertical-align: middle;
-    padding-left: 10em;
+    text-align: center;
     white-space: nowrap;
 }
 #header-wrapper .header a {
@@ -73,12 +76,12 @@ a {
 #crosscol-wrapper ul.PageList {
     display: table-cell;
     vertical-align: middle;
-    padding-left: 10em;
+    text-align: center;
     white-space: nowrap;
 }
 #crosscol-wrapper ul.PageList li {
     display: inline-block;
-    margin-right: 2em;
+    margin: 0 1em;
 }
 #crosscol-wrapper ul.PageList li a {
     color: #29568f;

@@ -6,9 +6,6 @@ layout: default
 {{ content }}
 <p><a href="#">Наверх</a></p>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
-
 <div id="comments">
   <h2>Отправить комментарий</h2>
   <p>
@@ -19,44 +16,20 @@ layout: default
     страницы</a>
     (необходима <a href="https://github.com/signup/free">регистрация
     на GitHub</a>) или связаться со мной
-    по <a class="user-email">email</a>.
+    по <a href="" onClick="UserEmail(); return false;">email</a>.
   </p>
 </div>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
+<script type="text/javascript" src="{{ site.url }}/js/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
+{% include js/comments.js %}
+{% include js/email.js %}
 
-$.ajax("https://api.github.com/users/visconte",
-{
-  dataType : "jsonp",
-  crossDomain : false,
-  jsonpCallback : "loadUserInfo"
+$(document).ready(function() {
+  $("a.lightbox").colorbox();
 });
-
-function loadUserInfo(info) {
-$('a.user-email').prop('href', 'mailto:' + info.data.email + '?subject=Комментарий к посту "{{ page.title }}"')
-};
-
-$.ajax("https://api.github.com/repos/visconte/visconte.github.com/issues/{{ page.commentIssueId }}/comments",
-{
-  headers : {"Accept": "application/vnd.github.html+json"},
-  dataType : "jsonp",
-  crossDomain : false,
-  scriptCharset : "utf-8",
-  jsonpCallback : "loadComments"
-});
-
-function loadComments(comments) {
-  for (var i=0; i<comments.data.length; i++) {
-    var cuser = comments.data[i].user.login;
-    var cuserlink = 'https://www.github.com/' + cuser;
-    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#issuecomment-' + comments.data[i].id;
-    var cbody = comments.data[i].body_html;
-    var cavatarlink = comments.data[i].user.avatar_url;
-    var cdate = Date.parse(comments.data[i].created_at).toString("MMMM d, yyyy HH:mm");
-    
-    $('#comments').append('<div class="avatar-bubble"><span class="avatar"><img width="48" height="48" src="' + cavatarlink + '"><span class="overlay size-48"/></span><div class="bubble"><div class="comment"><div class="cmeta"><p class="author"><span class="icon"></span> <strong><a href="' + cuserlink + '">' + cuser + '</a></strong> <a href="' + clink + '">комментирует</a></p><p class="date"><a href="' + clink + '">' + cdate + '</a></p></div><div class="body">' + cbody + '</div></div></div>')
-  }
-};
 </script>
 
-<p style="margin-bottom:0"><a href="#">Наверх</a></p>
+<p><a href="#">Наверх</a></p>

@@ -1,3 +1,5 @@
+#main > *:first-child { margin-top: 21px !important; }
+#main > *:last-child { margin-bottom: 21px !important; }
 #main a { color: #29568f; }
 #main a:hover { text-decoration: underline; }
 #main h1, #main h2, #main h3 { font-weight: normal; }
@@ -12,7 +14,6 @@
     border-top: 4px solid #aaa;
 }
 #main h1:first-child {
-    margin-top: 0 !important;
     border-top: none !important;
     padding-top: .25em !important;
 }
@@ -45,6 +46,12 @@
     padding: .3em;
     border: 1px solid #ddd;
     max-width: 100%;
+}
+#main a.lightbox img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: url("data:application/cur;base64,AAACAAEAICACAAYABgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA/wAAAOcAAAHngAABgYAAAYGAAAHngAAA5wAAAP8AAAA8AAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////9////+P////H////j///wx///wA///4Af//+AH///AA///wAP//8AD///AA///4Af//+AH///wD////D///8="), auto;
 }
 #main img.emoji {
     margin: 0;
