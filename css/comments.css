@@ -14,9 +14,10 @@
 #comments .comment .cmeta p.author,
 #comments .comment .cmeta p.date {
     margin: 0;
-    font-size: 12px;
     height: 33px;
     line-height: 33px;
+    font-size: 14px;
+    font-family: "Lucida Grande", "Trebuchet MS", Arial, sans-serif;    
     text-shadow: 1px 1px 0 rgba(255,255,255,.7);
 }
 #comments .comment .cmeta p.author {

@@ -45,8 +45,7 @@ Issue-трекер GitHub, хранящий комментарии блога и
 ul#github-emoji { margin-left: 0; }
 ul#github-emoji li {
     display: inline-block;
-    width: 160px;
-    height: 30px;
+    width: 11.5em;
     list-style: none;
 }
 </style>

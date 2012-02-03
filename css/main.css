@@ -1,48 +1,43 @@
-#main > *:first-child { margin-top: 21px !important; }
-#main > *:last-child { margin-bottom: 21px !important; }
-#main a { color: #29568f; }
-#main a:hover { text-decoration: underline; }
-#main h1, #main h2, #main h3 { font-weight: normal; }
-#main h1, #main h2 {
+#main > *:first-child { margin-top: 16px !important; }
+#main h1, #main h2, #main h3 {
+    font-weight: normal;
     color: #4771a5;
-    line-height: 1.2em;
-    margin-top: 1em;
-    padding-top: .5em;
+}
+#main h1, #main h2 {
+    margin-bottom: 16px;
+    border-top: 4px solid;
 }
 #main h1 {
-    font-size: 170%;
-    border-top: 4px solid #aaa;
+    font-size: 24px;
+    line-height: 28px;
+    padding-top: 12px;
+    border-color: #aaa;
 }
-#main h1:first-child {
-    border-top: none !important;
-    padding-top: .25em !important;
-}
+#main h1:first-child { border-top: none !important; }
 #main h2 {
-    font-size: 150%;
-    border-top: 4px solid #e0e0e0;
+    font-size: 21px;
+    padding-top: 4px;
+    border-color: #e0e0e0;
 }
 #main h3 {
-    color: #29568f;
-    font-size: 120%;
-    line-height: 1.2em;
-    margin-top: 1em;
+    font-size: 18px;
+    margin-bottom: 3px;
+    padding-top: 5px;
 }
-#main p { margin: 1em 0; }
+#main a { color: #29568f; }
+#main a:hover { text-decoration: underline; }
+#main p { margin-bottom: 1em; }
 #main ul, #main ol {
     list-style-position: outside;
-    margin: 1em 0 1em 2em;
-}
-#main ul li, #main ol li {
-    margin-top: .5em;
-    margin-bottom: .5em;
+    margin-bottom: 1em;
+    margin-left: 2em;
 }
 #main ul ul, #main ul ol,
 #main ol ol, #main ol ul {
-    margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 #main img {
-    margin: 1em 0;
+    margin-bottom: 1em;
     padding: .3em;
     border: 1px solid #ddd;
     max-width: 100%;
@@ -65,7 +60,7 @@
 
 .float-left {
     float: left;
-    padding:. 5em 1em .25em 0;
+    padding: .5em 1em .25em 0;
 }
 .float-right {
     float: right;
@@ -84,7 +79,7 @@
     text-align: right;
 }
 blockquote {
-    margin: 1em 0;
+    margin-bottom: 1em;
     border-left: 5px solid #ddd;
     padding-left: .6em;
     color: #555;
@@ -97,9 +92,7 @@ dd {
     margin-left: 2em;
     margin-bottom: 1em;
 }
-table {
-    margin: 1em 0;
-}
+table { margin-bottom: 1em; }
 table th {
     border-bottom: 1px solid #bbb;
     padding: .2em 1em;
@@ -111,7 +104,7 @@ table td {
 pre {
     background-color: #eee;
     border: 1px solid #ddd;
-    margin: 1em 0;
+    margin-bottom: 1em;
     padding: 5px;
     overflow: auto;
 
