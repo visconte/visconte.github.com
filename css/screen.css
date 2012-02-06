@@ -6,12 +6,9 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    font: 16px/24px Georgia, Times, serif;
-    text-align: left;
-    color: black;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
 }
-h1, h2, h3, h4 { font-family: "Lucida Grande", "Trebuchet MS", Arial, sans-serif; }
-code { font-family: "Courier New", Courier, monospaced; }
 a {
     text-decoration: none;
     outline: none;
@@ -27,7 +24,6 @@ a {
 #outer-wrapper {
     min-height: 100%;
     min-width: 800px;
-    background: white;
     overflow: hidden;
 }
 #header-wrapper {
@@ -69,7 +65,6 @@ a {
     white-space: nowrap;
 }
 #header-wrapper .header a {
-    font-family: "Lucida Grande", "Trebuchet MS", Arial, sans-serif;
     font-size: 34px;
     color: #29568f;
 }
@@ -85,7 +80,6 @@ a {
     margin: 0 1em;
 }
 #crosscol-wrapper ul.PageList li a {
-    font-family: "Lucida Grande", "Trebuchet MS", Arial, sans-serif;    
     color: #29568f;
     text-shadow: 0 1px rgba(255,255,255,.2);
 }
