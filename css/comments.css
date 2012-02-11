@@ -1,56 +1,60 @@
 ---
 ---
 #comments .comment {
-    margin: 10px 0;
-    border: 1px solid #cacaca;
+	margin: 10px 0;
+	border: 1px solid #cacaca;
 }
 #comments .comment .cmeta {
-    height: 33px;
-    padding: 0 10px;
-    border-bottom: 1px solid #ccc;
-    background: url("{{ site.url }}/images/modules/comments/metabar.gif") 0 0 repeat-x;
+	height: 33px;
+	padding: 0 10px;
+	border-bottom: 1px solid #ccc;
+	background: url("{{ site.url }}/images/modules/comments/metabar.gif") 0 0 repeat-x;
 }
 
 #comments .comment .cmeta p.author,
 #comments .comment .cmeta p.date {
-    margin: 0;
-    height: 33px;
-    line-height: 33px;
-    font-size: 14px;
-    text-shadow: 1px 1px 0 rgba(255,255,255,.7);
+	margin: 0;
+	height: 33px;
+	line-height: 33px;
+	font-family: "Trebuchet MS","Lucida Grande",Arial,sans-serif;
+	font-size: 14px;
+	text-shadow: 1px 1px 0 rgba(255,255,255,.7);
 }
 #comments .comment .cmeta p.author {
-    float: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
-#comments .comment .cmeta p.date { float: right; }
+#comments .comment .cmeta p.date {float: right;}
 
-#comments .cmeta p.author a, #comments .cmeta p.date a { color: #666; }
-#comments .cmeta p.author strong a { color: #222; }
+#comments .cmeta p.author a, #comments .cmeta p.date a {
+	color: #666;
+	text-decoration: none;
+}
+#comments .cmeta p.author strong a {color: #222;}
 #comments .comment .cmeta .gravatar {
-    display: inline-block;
-    margin-top: -2px;
-    margin-right: 3px;
-    padding: 1px;
-    line-height: 1px;
-    vertical-align: middle;
-    font-size: 1px;
-    background: #fff;
-    border: 1px solid #c8c8c8;
+	display: inline-block;
+	margin-top: -2px;
+	margin-right: 3px;
+	padding: 1px;
+	line-height: 1px;
+	vertical-align: middle;
+	font-size: 1px;
+	background: #fff;
+	border: 1px solid #c8c8c8;
 }
-#comments .comment .cmeta .gravatar img { border: 0; }
+#comments .comment .cmeta .gravatar img {border: 0;}
 #comments .comment .cmeta .icon {
-    display: inline-block;
-    margin-top: -2px;
-    margin-left: 5px;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    background: url("{{ site.url }}/images/modules/comments/icons.png") 0 0 no-repeat;
+	display: inline-block;
+	margin-top: -2px;
+	margin-left: 5px;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: url("{{ site.url }}/images/modules/comments/icons.png") 0 0 no-repeat;
 }
 
-#comments .comment .body { padding: 0 10px; }
-#comments .comment .body > *:first-child { margin-top: 10px !important; }
-#comments .comment .body > *:last-child { margin-bottom: 10px !important; }
+#comments .comment .body {padding: 0 10px;}
+#comments .comment .body > *:first-child {margin-top: 10px !important;}
+#comments .comment .body > *:last-child {margin-bottom: 10px !important;}

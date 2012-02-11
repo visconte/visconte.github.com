@@ -12,8 +12,7 @@ layout: default
     Комментарии блога предоставлены
     сервисом <a href="https://github.com/">GitHub</a>. Вы можете
     отправить комментарий
-    с <a href="https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#discussion_bucket">данной
-    страницы</a>
+    с <a href="https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#discussion_bucket">данной страницы</a>
     (необходима <a href="https://github.com/signup/free">регистрация
     на GitHub</a>) или связаться со мной по <a href=""
     class="user-email">email</a>.
@@ -28,11 +27,17 @@ layout: default
 {% include js/email.js %}
 
 $(document).ready(function() {
-    $('a.lightbox').colorbox();
-    $('a.user-email').click(function() {
-	UserEmail();
-	return false;
-    });
+	$('img.lightbox').colorbox({
+		href: function() {
+			var url = $(this).attr('src');
+			return url;
+		}
+	});
+
+	$('a.user-email').click(function() {
+		UserEmail();
+		return false;
+	});
 });
 </script>
 

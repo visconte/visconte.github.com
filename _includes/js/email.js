@@ -1,12 +1,12 @@
 function UserEmail() {
-    $.ajax('https://api.github.com/users/visconte', {
+	$.ajax('https://api.github.com/users/visconte', {
 	dataType: 'json',
 	success: function(info) {
-	    loadUserInfo(info);
+		mailtoUser(info);
 	}
-    });
+	});
 };
-function loadUserInfo(info) {
-    var emaillink = 'mailto:' + info.email + '?subject=Комментарий к посту "{{ page.title }}"';
-    window.location.href = emaillink;
+function mailtoUser(info) {
+	var emaillink = 'mailto:' + info.email + '?subject=Комментарий к посту "{{ page.title }}"';
+	window.location.href = emaillink;
 };
