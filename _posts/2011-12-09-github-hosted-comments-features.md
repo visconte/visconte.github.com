@@ -35,22 +35,12 @@ Issue-трекер GitHub, хранящий комментарии блога и
 и используют его повсеместно, в том числе --- в комментариях.
 
 ### Выражайте эмоции посредством Emoji
-{: #section-emoji }
+{: #section-emoji}
 
 Достигнуть эффекта большей выразительности и эмоциональности вам
 поможет уникальный набор иконок Emoji. GitHub использует
 наборы символов, которые преобразуются в замечательные иконки в
 соответствии с таблицей ниже.
-
-<style type="text/css">
-ul#github-emoji {margin-left: 0;}
-ul#github-emoji li {
-	display: inline-block;
-	width: 11.4em;
-	padding: 2px 0;
-	list-style: none;
-}
-</style>
 
 {% for item in (1..75) %}{% capture imoji_name %}{% cycle '+1', '-1', 'airplane', 'apple', 'art', 'bear', 'beer', 'bike', 'bomb', 'book', 'broken_heart', 'bulb', 'bus', 'cake', 'calling', 'cat', 'clap', 'computer', 'cool', 'cop', 'couple', 'dog', 'dolphin', 'email', 'feet', 'fire', 'fish', 'fist', 'gift', 'hammer', 'heart', 'horse', 'iphone', 'key', 'kiss', 'koala', 'leaves', 'lips', 'lipstick', 'lock', 'mag', 'mega', 'memo', 'metal', 'moneybag', 'nail_care', 'new', 'octocat', 'ok', 'pencil', 'princess', 'punch', 'rainbow', 'rose', 'runner', 'scissors', 'shipit', 'ski', 'smoking', 'sparkles', 'star', 'sunflower', 'sunny', 'taxi', 'thumbsdown', 'thumbsup', 'tm', 'tophat', 'train', 'v', 'vs', 'warning', 'wheelchair', 'zap', 'zzz' %}{% endcapture %}
 * ![:{{ imoji_name }}:]({{ site.cloud }}/images/icons/emoji/{{ imoji_name }}.png ":{{ imoji_name }}:"){: .emoji} `:{{ imoji_name }}:`{% endfor %}

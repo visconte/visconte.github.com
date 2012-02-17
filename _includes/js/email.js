@@ -6,6 +6,7 @@ function UserEmail() {
 	}
 	});
 };
+
 function mailtoUser(info) {
 	var emaillink = 'mailto:' + info.email + '?subject=Комментарий к посту "{{ page.title }}"';
 	window.location.href = emaillink;

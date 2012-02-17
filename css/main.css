@@ -1,20 +1,28 @@
-#main > *:first-child {margin-top: .5em;}
+#main > *:first-child {margin-top: 1em;}
 #main h1 {font-size: 24px;}
 #main h2 {font-size: 21px;}
 #main h3 {font-size: 18px;}
-#main p {margin-bottom: .5em;}
+#main p {margin-bottom: 1em;}
 #main ul, #main ol {
 	list-style-position: outside;
 	margin-left: 2em;
-	margin-bottom: .5em;
+	margin-bottom: 1em;
 }
 #main ul ul, #main ul ol,
 #main ol ol, #main ol ul {
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
 }
+#main ul#posts, #main ul#github-emoji {
+	margin-left: 0;
+	list-style-type: none;
+}
+#main ul#github-emoji li {
+	display: inline-block;
+	width: 11.4em;
+}
 #main img {
-	margin-bottom: .5em;
+	margin-bottom: 1em;
 	padding: .3em;
 	border: 1px solid #ddd;
 	max-width: 100%;
@@ -23,14 +31,14 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	cursor: url("data:application/cur;base64,AAACAAEAICACAAYABgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA/wAAAOcAAAHngAABgYAAAYGAAAHngAAA5wAAAP8AAAA8AAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////9////+P////H////j///wx///wA///4Af//+AH///AA///wAP//8AD///AA///4Af//+AH///wD////D///8="), auto;
+	cursor: url("data:application/cur;base64,AAACAAEAICACAAYABgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA/wAAAOcAAAHngAABgYAAAYGAAAHngAAA5wAAAP8AAAA8AAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////9////+P////H////j///wx///wA///4Af//+AH///AA///wAP//8AD///AA///4Af//+AH///wD////D///8="), pointer;
 }
 #main img.emoji {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	height: 20px;
-	width: 20px;
+	height: 24px;
+	width: 24px;
 	vertical-align: bottom;
 }
 #main p img {margin: 0;}
@@ -56,7 +64,7 @@
 	text-align: right;
 }
 blockquote {
-	margin-bottom: .5em;
+	margin-bottom: 1em;
 	border-left: 5px solid #ddd;
 	padding-left: .6em;
 	color: #555;
@@ -69,7 +77,7 @@ dd {
 	margin-left: 2em;
 	margin-bottom: 1em;
 }
-table {margin-bottom: .5em;}
+table {margin-bottom: 1em;}
 table th {
 	border-bottom: 1px solid #bbb;
 	padding: .2em 1em;
@@ -81,7 +89,7 @@ table td {
 pre {
 	background-color: #eee;
 	border: 1px solid #ddd;
-	margin-bottom: .5em;
+	margin-bottom: 1em;
 	padding: 5px;
 	overflow: auto;
 
