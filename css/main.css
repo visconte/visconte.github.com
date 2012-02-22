@@ -31,7 +31,10 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	cursor: url(data:image/cur;base64,AAACAAEAICACAAYABgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA/wAAAOcAAAHngAABgYAAAYGAAAHngAAA5wAAAP8AAAA8AAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////9////+P////H////j///wx///wA///4Af//+AH///AA///wAP//8AD///AA///4Af//+AH///wD////D///8=), pointer;
+
+	cursor: zoom-in;
+	cursor: -moz-zoom-in;
+	cursor: -webkit-zoom-in;
 }
 #main img.emoji {
 	margin: 0;
