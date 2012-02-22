@@ -4,15 +4,18 @@ title: "GitHub Pages: дальнейшая интеграция, или комм
 category: github
 commentIssueId: 1
 ---
+
 Если бы системы комментариев ограничивались только Disqus,
 IntenseDebate и тому подобными, то окружающий мир блогов был бы чуть
-скучнее, а гитхабберы, размещающие свои странички на
-[GitHub Pages](http://pages.github.com/), были бы лишены тех
-возможностей, что так полюбились им на GitHub. Хочу представить вам
-новую интегрированную с GitHub систему комментариев, действующую на
-этом блоге. И хотя это потребует
-[регистрации на GitHub](https://github.com/signup/free), надеюсь, что
-комментарии блога и их возможности придутся вам по душе.
+скучнее, а гитхабберы, размещающие свои странички на [GitHub Pages]
+[], были бы лишены тех возможностей, что так полюбились им на
+GitHub. Хочу представить вам новую интегрированную с GitHub систему
+комментариев, действующую на этом блоге. И хотя это потребует
+[регистрации на GitHub] [gh-reg], надеюсь, что комментарии блога и их
+возможности придутся вам по душе.
+
+[GitHub Pages]: http://pages.github.com/
+[gh-reg]: https://github.com/signup/free
 
 Для отправки комментария достаточно перейти по ссылке в
 соответствующем [разделе](#comments) в конце поста. Ссылка ведёт на
@@ -23,24 +26,25 @@ Issue-трекер GitHub, хранящий комментарии блога и
 
 ### Создавайте разметку текста легко
 
-Если вы ещё не знакомы с
-[Markdown](http://daringfireball.net/projects/markdown/syntax),
-облегчённым языком разметки, то сделать это можно в непринуждённой
-обстановке обсуждения. Помимо простого текста, Markdown распознаёт
-структурные вставки для создания разметки, добавления гиперссылок и
-картинок, и всё это --- на простом и интуитивном уровне. Недаром эта
-разметка так полюбилась пользователям GitHub, что они придумали
-собственное расширение,
-[GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/),
-и используют его повсеместно, в том числе --- в комментариях.
+Если вы ещё не знакомы с [Markdown] [], облегчённым языком разметки,
+то сделать это можно в непринуждённой обстановке обсуждения. Помимо
+простого текста, Markdown распознаёт структурные вставки для создания
+разметки, добавления гиперссылок и картинок, и всё это --- на простом
+и интуитивном уровне. Недаром эта разметка так полюбилась
+пользователям GitHub, что они придумали собственное расширение,
+[GitHub Flavored Markdown] [gfm], и используют его повсеместно, в том
+числе --- в комментариях.
+
+[Markdown]: http://daringfireball.net/projects/markdown/syntax
+[gfm]: http://github.github.com/github-flavored-markdown/
 
 ### Выражайте эмоции посредством Emoji
 {: #section-emoji}
 
 Достигнуть эффекта большей выразительности и эмоциональности вам
-поможет уникальный набор иконок Emoji. GitHub использует
-наборы символов, которые преобразуются в замечательные иконки в
-соответствии с таблицей ниже.
+поможет уникальный набор иконок Emoji. GitHub использует наборы
+символов, которые преобразуются в замечательные иконки в соответствии
+с таблицей ниже.
 
 {% for item in (1..75) %}{% capture imoji_name %}{% cycle '+1', '-1', 'airplane', 'apple', 'art', 'bear', 'beer', 'bike', 'bomb', 'book', 'broken_heart', 'bulb', 'bus', 'cake', 'calling', 'cat', 'clap', 'computer', 'cool', 'cop', 'couple', 'dog', 'dolphin', 'email', 'feet', 'fire', 'fish', 'fist', 'gift', 'hammer', 'heart', 'horse', 'iphone', 'key', 'kiss', 'koala', 'leaves', 'lips', 'lipstick', 'lock', 'mag', 'mega', 'memo', 'metal', 'moneybag', 'nail_care', 'new', 'octocat', 'ok', 'pencil', 'princess', 'punch', 'rainbow', 'rose', 'runner', 'scissors', 'shipit', 'ski', 'smoking', 'sparkles', 'star', 'sunflower', 'sunny', 'taxi', 'thumbsdown', 'thumbsup', 'tm', 'tophat', 'train', 'v', 'vs', 'warning', 'wheelchair', 'zap', 'zzz' %}{% endcapture %}
 * ![:{{ imoji_name }}:]({{ site.cloud }}/images/icons/emoji/{{ imoji_name }}.png ":{{ imoji_name }}:"){: .emoji} `:{{ imoji_name }}:`{% endfor %}
@@ -62,8 +66,9 @@ Issue-трекер GitHub, хранящий комментарии блога и
 ![]({{ site.cloud }}/images/github/comments-notifications.jpg){: .lightbox}
 
 Если нет желания вступать в дискуссии, то оповещения о вашем
-упоминании в комментариях можно отключить в
-[Notification Center](https://github.com/account/notifications).
+упоминании в комментариях можно отключить в [Notification Center] [].
+
+[Notification Center]: https://github.com/account/notifications
 
 ![]({{ site.cloud }}/images/github/managing-notifications.jpg){: .lightbox}
 

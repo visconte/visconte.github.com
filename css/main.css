@@ -19,7 +19,7 @@
 }
 #main ul#github-emoji li {
 	display: inline-block;
-	width: 11.4em;
+	width: 11.5em;
 }
 #main img {
 	margin-bottom: 1em;
@@ -31,14 +31,14 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	cursor: url("data:application/cur;base64,AAACAAEAICACAAYABgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA/wAAAOcAAAHngAABgYAAAYGAAAHngAAA5wAAAP8AAAA8AAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////9////+P////H////j///wx///wA///4Af//+AH///AA///wAP//8AD///AA///4Af//+AH///wD////D///8="), pointer;
+	cursor: url(data:image/cur;base64,AAACAAEAICACAAYABgAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA/wAAAOcAAAHngAABgYAAAYGAAAHngAAA5wAAAP8AAAA8AAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////9////+P////H////j///wx///wA///4Af//+AH///AA///wAP//8AD///AA///4Af//+AH///wD////D///8=), pointer;
 }
 #main img.emoji {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	height: 24px;
-	width: 24px;
+	height: 20px;
+	width: 20px;
 	vertical-align: bottom;
 }
 #main p img {margin: 0;}
@@ -127,7 +127,7 @@ pre code {
 	white-space: pre !important;
 }
 code {
-	font-family: "Courier New",Courier,monospace;
+	font-family: Courier New, Courier, monospace;
 	color: #444;
 	padding: 0 .2em;
 	background-color: #f8f8f8;

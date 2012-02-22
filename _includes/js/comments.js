@@ -2,7 +2,7 @@ $.ajax('https://api.github.com/repos/visconte/visconte.github.com/issues/{{ page
 	dataType: 'json',
 	headers: { Accept: 'application/vnd.github.html+json' },
 	success: function(comments) {
-	loadComments(comments);
+		loadComments(comments);
 	}
 });
 
