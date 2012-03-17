@@ -32,15 +32,18 @@ body {
 	clear: both;
 }
 #header-wrapper {
+	float: left;
 	width: 100%;
 	background: #4771a5;
+	font-family: Trebuchet MS, Lucida Grande, Arial, sans-serif;
+	white-space: nowrap;
 }
 #crosscol-wrapper {
 	width: 100%;
 	background-color: #96b1d2;
-	box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
-	-moz-box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
-	-webkit-box-shadow: 0 .08em .22em #29568f, rgba(255,255,255,.2) 0 -.08em inset;
+	box-shadow: 0 1px 3px #29568f, rgba(255,255,255,.2) 0 -1px inset;
+	-moz-box-shadow: 0 1px 3px #29568f, rgba(255,255,255,.2) 0 -1px inset;
+	-webkit-box-shadow: 0 1px 3px #29568f, rgba(255,255,255,.2) 0 -1px inset;
 }
 #main {
 	width: 35em;
@@ -58,12 +61,22 @@ body {
 	background: #4771a5;
 }
 
-#header-wrapper .header {
-	text-align: center;
-	white-space: nowrap;
+#header-wrapper a.title {
+	float: left;
+	margin-left: 1.5em;
+	margin-right: .5em;
+	padding: .25em 0;
+	font-size: 32px;
+	font-weight: bold;
+	text-decoration: none !important;
+	color: #29568f;
 }
-#header-wrapper .header h1 {font-size: 30px;}
-#header-wrapper .header a {text-decoration: none !important;}
+#header-wrapper p {
+	display: inline-block;
+	padding-top: 1.4em;
+	font-style: italic;
+	color: #96b1d2;
+}
 
 #crosscol-wrapper ul.PageList {
 	line-height: 26px;

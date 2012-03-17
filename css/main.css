@@ -31,7 +31,9 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-
+}
+#main img.cboxElement {
+	cursor: pointer;
 	cursor: zoom-in;
 	cursor: -moz-zoom-in;
 	cursor: -webkit-zoom-in;
