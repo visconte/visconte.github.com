@@ -56,41 +56,41 @@ Issue-трекер GitHub, хранящий комментарии блога и
 комментарии набрать `@имя_пользователя`, и ваш собеседник получит
 уведомление об этом.
 
-![]({{ site.cloud }}/images/github/mentioning-in-a-comment.jpg){: .lightbox}
+[![]({{ site.cloud }}/images/github/mentioning-in-a-comment.jpg)]({{ site.cloud }}/images/github/mentioning-in-a-comment.jpg)
 
 Если вы оставили комментарий к посту или получили приглашение, вы
 будете автоматически подписаны на всё дальнейшее обсуждение. Ссылка
 внизу страницы с комментариями позволяет подписаться на дискуссию
 самостоятельно или, наоборот, отписаться от неё.
 
-![]({{ site.cloud }}/images/github/comments-notifications.jpg){: .lightbox}
+[![]({{ site.cloud }}/images/github/comments-notifications.jpg)]({{ site.cloud }}/images/github/comments-notifications.jpg)
 
 Если нет желания вступать в дискуссии, то оповещения о вашем
 упоминании в комментариях можно отключить в [Notification Center] [].
 
 [Notification Center]: https://github.com/account/notifications
 
-![]({{ site.cloud }}/images/github/managing-notifications.jpg){: .lightbox}
+[![]({{ site.cloud }}/images/github/managing-notifications.jpg)]({{ site.cloud }}/images/github/managing-notifications.jpg)
 
 ### Отправляйте ответы по email
 
 Свой ответ на комментарий вы можете послать по email, используя
 почтовый ящик, указанный в аккаунте GitHub.
 
-![]({{ site.cloud }}/images/github/sending-an-email.jpg){: .lightbox}
+[![]({{ site.cloud }}/images/github/sending-an-email.jpg)]({{ site.cloud }}/images/github/sending-an-email.jpg)
 
 На сегодняшний день обеспечена поддержка только простого текста,
 поэтому вставки HTML-кода и прикреплённые файлы
 игнорируются. Отправленный по email ответ будет опубликован в
 комментариях.
 
-![]({{ site.cloud }}/images/github/plaintext-comment.jpg){: .lightbox}
+[![]({{ site.cloud }}/images/github/plaintext-comment.jpg)]({{ site.cloud }}/images/github/plaintext-comment.jpg)
 
 ### Используйте поиск по комментариям
 
 Данный поиск доступен на странице с комментариями.
 
-![]({{ site.cloud }}/images/github/issue-search.png){: .lightbox}
+[![]({{ site.cloud }}/images/github/issue-search.png)]({{ site.cloud }}/images/github/issue-search.png)
 
 ### Полезные ссылки
 

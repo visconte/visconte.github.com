@@ -13,6 +13,13 @@ a {
 	outline: none;
 }
 a:hover {text-decoration: underline !important;}
+a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".jpeg"] {
+	cursor: pointer;
+	cursor: zoom-in;
+	cursor: -moz-zoom-in;
+	cursor: -webkit-zoom-in;
+}
+
 body {
 	position: absolute;
 	width: 100%;
@@ -32,10 +39,10 @@ body {
 	clear: both;
 }
 #header-wrapper {
-	float: left;
 	width: 100%;
 	background: #4771a5;
 	font-family: Trebuchet MS, Lucida Grande, Arial, sans-serif;
+	padding: 2px 0 8px 40px;
 	white-space: nowrap;
 }
 #crosscol-wrapper {
@@ -61,19 +68,14 @@ body {
 	background: #4771a5;
 }
 
-#header-wrapper a.title {
-	float: left;
-	margin-left: 1.5em;
-	margin-right: .5em;
-	padding: .25em 0;
+#header-wrapper p.title {
 	font-size: 32px;
 	font-weight: bold;
 	text-decoration: none !important;
 	color: #29568f;
 }
-#header-wrapper p {
-	display: inline-block;
-	padding-top: 1.4em;
+#header-wrapper p.description {
+	font-size: 14px;
 	font-style: italic;
 	color: #96b1d2;
 }

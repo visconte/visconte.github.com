@@ -27,12 +27,7 @@ layout: default
 {% include js/email.js %}
 
 $(document).ready(function() {
-	$('img.lightbox').colorbox({
-		href: function() {
-			var url = $(this).attr('src');
-			return url;
-		}
-	});
+	$('a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".jpeg"]').colorbox();
 
 	$('a.user-email').click(function() {
 		UserEmail();

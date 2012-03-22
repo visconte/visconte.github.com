@@ -27,17 +27,6 @@
 	border: 1px solid #ddd;
 	max-width: 100%;
 }
-#main img.lightbox {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-#main img.cboxElement {
-	cursor: pointer;
-	cursor: zoom-in;
-	cursor: -moz-zoom-in;
-	cursor: -webkit-zoom-in;
-}
 #main img.emoji {
 	margin: 0;
 	padding: 0;
