@@ -69,9 +69,8 @@ body {
 }
 
 #header-wrapper p.title {
-	font-size: 32px;
+	font-size: 27px;
 	font-weight: bold;
-	text-decoration: none !important;
 	color: #29568f;
 }
 #header-wrapper p.description {
@@ -81,7 +80,7 @@ body {
 }
 
 #crosscol-wrapper ul.PageList {
-	line-height: 26px;
+	line-height: 23px;
 	text-align: center;
 	white-space: nowrap;
 }
