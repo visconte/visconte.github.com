@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "GitHub Pages: дальнейшая интеграция, или комментарии блога на GitHub"
-category: github
 commentIssueId: 1
 ---
 
@@ -48,9 +47,7 @@ Issue-трекер GitHub, хранящий комментарии блога и
 символов, которые преобразуются в замечательные иконки в соответствии
 с таблицей ниже.
 
-{% for item in (1..75) %}{% capture imoji_name %}{% cycle '+1', '-1', 'airplane', 'apple', 'art', 'bear', 'beer', 'bike', 'bomb', 'book', 'broken_heart', 'bulb', 'bus', 'cake', 'calling', 'cat', 'clap', 'computer', 'cool', 'cop', 'couple', 'dog', 'dolphin', 'email', 'feet', 'fire', 'fish', 'fist', 'gift', 'hammer', 'heart', 'horse', 'iphone', 'key', 'kiss', 'koala', 'leaves', 'lips', 'lipstick', 'lock', 'mag', 'mega', 'memo', 'metal', 'moneybag', 'nail_care', 'new', 'octocat', 'ok', 'pencil', 'princess', 'punch', 'rainbow', 'rose', 'runner', 'scissors', 'shipit', 'ski', 'smoking', 'sparkles', 'star', 'sunflower', 'sunny', 'taxi', 'thumbsdown', 'thumbsup', 'tm', 'tophat', 'train', 'v', 'vs', 'warning', 'wheelchair', 'zap', 'zzz' %}{% endcapture %}
-* ![:{{ imoji_name }}:]({{ site.cloud }}/images/icons/emoji/{{ imoji_name }}.png ":{{ imoji_name }}:"){: .emoji} `:{{ imoji_name }}:`{% endfor %}
-{: #github-emoji}
+[![]({{ site.cloud }}/images/github/github-icons-emoji-set.png)]({{ site.cloud }}/images/github/github-icons-emoji-set.png)
 
 ### Принимайте участие в дискуссиях
 
