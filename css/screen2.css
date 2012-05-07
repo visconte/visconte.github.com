@@ -1,6 +1,6 @@
 /* Bluetone Creative Color Scheme:
-     dark-blue: #29568f    blue: #4771a5    light-blue: #96b1d2
-*/
+   dark-blue: #29568f    blue: #4771a5    light-blue: #96b1d2
+   */
 
 * { margin: 0; padding: 0; }
 body {
@@ -24,8 +24,8 @@ h3 {
     font-size: 19px;
     line-height: 24px;
 }
-a { 
-    outline: none; 
+a {
+    outline: none;
     color: #29568f;
 }
 

@@ -1,6 +1,6 @@
 /* Bluetone Creative Color Scheme:
-     dark-blue: #29568f    blue: #4771a5    light-blue: #96b1d2
- */
+   dark-blue: #29568f    blue: #4771a5    light-blue: #96b1d2
+   */
 
 * { margin: 0; padding: 0; }
 body {
@@ -9,8 +9,8 @@ body {
     height: 100%;
     text-align: left;
 }
-a { 
-    outline: none; 
+a {
+    outline: none;
     color: #29568f;
 }
 ul, ol {
@@ -110,7 +110,7 @@ ul li, ol li {
     white-space: nowrap;
 }
 #header-wrapper .header a {
-    font: bold 250% Helvetica,Verdana,Arial,sans-serif;    
+    font: bold 250% Helvetica,Verdana,Arial,sans-serif;
     color: #29568f;
     text-decoration: none;
     text-shadow: 0 2px #96b1d2;
@@ -127,7 +127,7 @@ ul li, ol li {
     margin-right: 1em;
 }
 #crosscol-wrapper ul.PageList li a {
-    font: normal 100% 'Trebuchet MS',Verdana,Arial,sans;    
+    font: normal 100% 'Trebuchet MS',Verdana,Arial,sans;
     color: #fff;
     text-decoration: none;
 }
@@ -149,9 +149,9 @@ ul li, ol li {
     max-width: 90%;
 }
 img.aligncenter {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 code {
     font-size: 110%;
