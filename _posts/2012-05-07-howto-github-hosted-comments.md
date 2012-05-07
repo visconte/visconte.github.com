@@ -56,6 +56,8 @@ category: GitHub
 [layout]: https://github.com/mojombo/jekyll/wiki/Usage
 [Liquid]: https://github.com/mojombo/jekyll/wiki/Liquid-Extensions
 
+{% assign special = '{{ page.commentIssueId }}' %}
+
 {% highlight html %}
 <div id="comments">
   <h2>Отправить комментарий</h2>
@@ -63,7 +65,7 @@ category: GitHub
     Комментарии блога предоставлены сервисом
     <a href="https://github.com/">GitHub</a>.
     Вы можете отправить комментарий с
-    <a href="https://github.com/visconte/visconte.github.com/issues/{% raw %}{{ page.commentIssueId }}{% endraw %}#discussion_bucket">данной страницы</a>
+    <a href="https://github.com/visconte/visconte.github.com/issues/{{ special }}#discussion_bucket">данной страницы</a>
     (необходима <a href="https://github.com/signup/free">регистрация на GitHub</a>)
     или связаться со мной по
     <a href="" class="user-email">email</a>.
@@ -91,7 +93,7 @@ issue, чтобы извлекать оттуда комментарии):
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <script type="text/javascript">
-$.ajax('https://api.github.com/repos/visconte/visconte.github.com/issues/{% raw %}{{ page.commentIssueId }}{% endraw %}/comments', {
+$.ajax('https://api.github.com/repos/visconte/visconte.github.com/issues/{{ special }}/comments', {
     dataType: 'json',
     headers: {Accept: 'application/vnd.github.html+json'},
     success: function(comments) {
@@ -142,7 +144,7 @@ function loadComments(comments) {
     for (var i=0; i<comments.length; i++) {
     var cuser = comments[i].user.login;
     var cuserlink = 'https://www.github.com/' + cuser;
-    var clink = 'https://github.com/visconte/visconte.github.com/issues/{% raw %}{{ page.commentIssueId }}{% endraw %}#issuecomment-' + comments[i].id;
+    var clink = 'https://github.com/visconte/visconte.github.com/issues/{{ special }}#issuecomment-' + comments[i].id;
     var cbody = comments[i].body_html;
     var cavatarlink = comments[i].user.avatar_url;
     var cdate = Date.parse(comments[i].created_at).toString("MMMM d, yyyy HH:mm");
