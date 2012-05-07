@@ -1,7 +1,7 @@
 title: Devlog on GitHub
-#description: Бортжурнал погружений в Funtoo, Emacs и другие субстанции
+description: Бортжурнал погружений в Funtoo, Emacs и другие субстанции
 url: http://visconte.github.com
 cloud: http://dl.dropbox.com/u/35307988/visconte.github.com
 markdown: kramdown
 pygments: yes
-exclude: ['others']
+#exclude: ['others']
