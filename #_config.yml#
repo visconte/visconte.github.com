@@ -4,3 +4,4 @@ url: http://visconte.github.com
 cloud: http://dl.dropbox.com/u/35307988/visconte.github.com
 markdown: kramdown
 pygments: yes
+#exclude: ['others']
