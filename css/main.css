@@ -8,6 +8,10 @@
     margin-left: 2em;
     margin-bottom: 1em;
 }
+#main ul#posts {
+    margin-left: 0;
+    list-style-type: none;
+}
 #main ul ul, #main ul ol,
 #main ol ol, #main ol ul {
     margin-top: 0 !important;
@@ -20,6 +24,10 @@
     max-width: 100%;
 }
 #main p img {margin: 0;}
+img.emoji {
+    padding: 0 !important;
+    border: 0 !important;
+}
 
 .float-left {
     float: left;
