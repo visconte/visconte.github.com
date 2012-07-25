@@ -185,5 +185,3 @@ API, регистрация OAuth-приложений), и всё, что на�
 
 [original]: http://ivanzuzak.info/2011/02/18/github-hosted-comments-for-github-hosted-blogs.html
 [Ivan Zuzak]: http://ivanzuzak.info/
-
-<!-- Local IspellDict: russian -->

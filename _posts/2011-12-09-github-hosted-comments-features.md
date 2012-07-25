@@ -97,5 +97,3 @@ category: GitHub
 1. [Emoji cheat sheet for Campfire and GitHub](http://www.emoji-cheat-sheet.com/)
 2. [Mention @somebody. They're notified](https://github.com/blog/821-mention-somebody-they-re-notified)
 3. [Reply to Comments from Email](https://github.com/blog/811-reply-to-comments-from-email)
-
-<!-- Local IspellDict: russian -->

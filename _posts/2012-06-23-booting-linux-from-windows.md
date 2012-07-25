@@ -140,5 +140,3 @@ bcdedit /default {GUID}
 {% highlight bat %}
 bcdedit /timeout 5
 {% endhighlight %}
-
-<!-- Local IspellDict: russian -->
