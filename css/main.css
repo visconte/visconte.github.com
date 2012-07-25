@@ -115,6 +115,7 @@ pre code {
 }
 code {
     font-family: Consolas, Courier New, Courier, monospace;
+    font-size: 17px;
     color: #444;
     padding: 0 .2em;
     background-color: #f8f8f8;

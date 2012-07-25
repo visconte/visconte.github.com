@@ -48,7 +48,7 @@ category: GitHub
 символов, которые преобразуются в замечательные иконки в соответствии
 с таблицей ниже.
 
-[![]({{ site.cloud }}/images/GitHub/github-icons-emoji-set.png)]({{ site.cloud }}/images/GitHub/github-icons-emoji-set.png)
+[![]({{ site.imgdir }}/GitHub/github-icons-emoji-set.png)]({{ site.imgdir }}/GitHub/github-icons-emoji-set.png)
 
 ### Принимайте участие в дискуссиях
 
@@ -56,41 +56,41 @@ category: GitHub
 комментарии набрать `@имя_пользователя`, и ваш собеседник получит
 уведомление об этом.
 
-[![]({{ site.cloud }}/images/GitHub/mentioning-in-a-comment.jpg)]({{ site.cloud }}/images/GitHub/mentioning-in-a-comment.jpg)
+[![]({{ site.imgdir }}/GitHub/mentioning-in-a-comment.jpg)]({{ site.imgdir }}/GitHub/mentioning-in-a-comment.jpg)
 
 Если вы оставили комментарий к посту или получили приглашение, вы
 будете автоматически подписаны на всё дальнейшее обсуждение. Ссылка
 внизу страницы с комментариями позволяет подписаться на дискуссию
 самостоятельно или, наоборот, отписаться от неё.
 
-[![]({{ site.cloud }}/images/GitHub/comments-notifications.jpg)]({{ site.cloud }}/images/GitHub/comments-notifications.jpg)
+[![]({{ site.imgdir }}/GitHub/comments-notifications.jpg)]({{ site.imgdir }}/GitHub/comments-notifications.jpg)
 
 Если нет желания вступать в дискуссии, то оповещения о вашем
 упоминании в комментариях можно отключить в [Notification Center] [].
 
 [Notification Center]: https://github.com/account/notifications
 
-[![]({{ site.cloud }}/images/GitHub/managing-notifications.jpg)]({{ site.cloud }}/images/GitHub/managing-notifications.jpg)
+[![]({{ site.imgdir }}/GitHub/managing-notifications.jpg)]({{ site.imgdir }}/GitHub/managing-notifications.jpg)
 
 ### Отправляйте ответы по email
 
 Свой ответ на комментарий вы можете послать по email, используя
 почтовый ящик, указанный в аккаунте GitHub.
 
-[![]({{ site.cloud }}/images/GitHub/sending-an-email.jpg)]({{ site.cloud }}/images/GitHub/sending-an-email.jpg)
+[![]({{ site.imgdir }}/GitHub/sending-an-email.jpg)]({{ site.imgdir }}/GitHub/sending-an-email.jpg)
 
 На сегодняшний день обеспечена поддержка только простого текста,
 поэтому вставки HTML-кода и прикреплённые файлы
 игнорируются. Отправленный по email ответ будет опубликован в
 комментариях.
 
-[![]({{ site.cloud }}/images/GitHub/plaintext-comment.jpg)]({{ site.cloud }}/images/GitHub/plaintext-comment.jpg)
+[![]({{ site.imgdir }}/GitHub/plaintext-comment.jpg)]({{ site.imgdir }}/GitHub/plaintext-comment.jpg)
 
 ### Используйте поиск по комментариям
 
 Данный поиск доступен на странице с комментариями.
 
-[![]({{ site.cloud }}/images/GitHub/issue-search.png)]({{ site.cloud }}/images/GitHub/issue-search.png)
+[![]({{ site.imgdir }}/GitHub/issue-search.png)]({{ site.imgdir }}/GitHub/issue-search.png)
 
 ### Ссылки по теме
 

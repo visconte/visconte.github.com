@@ -29,7 +29,7 @@ URL `https://github.com/visconte/visconte.github.com/issues/` и
 уникального id (`1` в данном примере). Данный issue используется
 читателями блога для отправки комментариев, что выглядит примерно так:
 
-[![]({{ site.cloud }}/images/GitHub/issue-tracker-comments.png)]({{ site.cloud }}/images/GitHub/issue-tracker-comments.png)
+[![]({{ site.imgdir }}/GitHub/issue-tracker-comments.png)]({{ site.imgdir }}/GitHub/issue-tracker-comments.png)
 
 После этого включите полученный id в [YAML-заголовок] [YAML] исходного
 текста поста, чтобы использовать его для загрузки комментариев на
@@ -129,7 +129,7 @@ $.ajax('https://api.github.com/repos/visconte/visconte.github.com/issues/{{ spec
 [new]: https://github.com/settings/applications/new
 [domains]: http://pages.github.com/#custom_domains
 
-[![]({{ site.cloud }}/images/GitHub/github_oauth.png)]({{ site.cloud }}/images/GitHub/github_oauth.png)
+[![]({{ site.imgdir }}/GitHub/github_oauth.png)]({{ site.imgdir }}/GitHub/github_oauth.png)
 
 ### Отображение комментариев в блоге
 
@@ -162,7 +162,7 @@ CSS-правила для комментариев, чтобы получить 
 
 [DateJS]: http://www.datejs.com/
 
-[![]({{ site.cloud }}/images/GitHub/blog-post-comments.png)]({{ site.cloud }}/images/GitHub/blog-post-comments.png)
+[![]({{ site.imgdir }}/GitHub/blog-post-comments.png)]({{ site.imgdir }}/GitHub/blog-post-comments.png)
 
 Вот и всё! Создание системы комментариев было достаточно просто, ведь
 у GitHub уже есть все необходимые составляющие (Issue-трекер, GitHub

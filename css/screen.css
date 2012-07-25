@@ -42,7 +42,7 @@ body {
     width: 100%;
     background: #4771a5;
     font-family: Trebuchet MS, Lucida Grande, Arial, sans-serif;
-    padding: 5px 0 7px 40px;
+    padding: 4px 0 7px 40px;
     white-space: nowrap;
 }
 #crosscol-wrapper {
@@ -69,8 +69,7 @@ body {
 }
 
 #header-wrapper a.title {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 27px;
     font-weight: bold;
     color: #29568f;
     text-decoration: none !important;
@@ -82,7 +81,6 @@ body {
 }
 
 #crosscol-wrapper ul.PageList {
-    line-height: 24px;
     text-align: center;
     white-space: nowrap;
 }
