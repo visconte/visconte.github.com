@@ -1,3 +1,5 @@
+---
+---
 #comments .comment {
     margin: 10px 0;
     border: 1px solid #cacaca;
@@ -53,7 +55,7 @@
     width: 16px;
     height: 16px;
     vertical-align: middle;
-    background: url(http://assets.github.com/images/modules/comments/icons.png) 0 0 no-repeat;
+    background: url({{ site.url }}/images/modules/comments/icons.png) 0 0 no-repeat;
 }
 
 #comments .comment .body {padding: 0 10px;}
