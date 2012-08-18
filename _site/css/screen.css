@@ -1,0 +1,104 @@
+/* Bluetone Creative Color Scheme:
+   dark-blue: #29568f    blue: #4771a5    light-blue: #96b1d2
+   */
+* {margin: 0; padding: 0;}
+h1, h2, h3, h4, h5, h6 {
+    padding-top: .25em;
+    padding-bottom: .25em;
+    font-style: italic;
+    color: #4771a5;
+}
+a {
+    color: #29568f;
+    outline: none;
+}
+a:hover {text-decoration: underline !important;}
+a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".jpeg"] {
+    cursor: pointer;
+    cursor: zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
+}
+
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font: 16px/1.4 Georgia, serif;
+    color: #333;
+}
+#outer-wrapper {
+    position: relative;
+    width: 100%;
+    min-width: 800px;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#header-wrapper, #crosscol-wrapper, #main {
+    position: relative;
+    clear: both;
+}
+#header-wrapper {
+    width: 100%;
+    background: #4771a5;
+    font-family: Trebuchet MS, Lucida Grande, Arial, sans-serif;
+    padding: 4px 0 7px 40px;
+    white-space: nowrap;
+}
+#crosscol-wrapper {
+    width: 100%;
+    background-color: #96b1d2;
+    box-shadow: 0 1px 3px #29568f, rgba(255,255,255,.2) 0 -1px inset;
+    -moz-box-shadow: 0 1px 3px #29568f, rgba(255,255,255,.2) 0 -1px inset;
+    -webkit-box-shadow: 0 1px 3px #29568f, rgba(255,255,255,.2) 0 -1px inset;
+}
+#main {
+    width: 35em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 4em;
+}
+#footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 4em;
+    display: table;
+    background: #4771a5;
+}
+
+#header-wrapper a.title {
+    font-size: 27px;
+    font-weight: bold;
+    color: #29568f;
+    text-decoration: none !important;
+}
+#header-wrapper p.description {
+    font-size: 14px;
+    font-style: italic;
+    color: #96b1d2;
+}
+
+#crosscol-wrapper ul.PageList {
+    text-align: center;
+    white-space: nowrap;
+}
+#crosscol-wrapper ul.PageList li {
+    display: inline-block;
+    margin: 0 1em;
+}
+#crosscol-wrapper ul.PageList li a {
+    font-family: Trebuchet MS, Lucida Grande, Arial, sans-serif;
+    text-shadow: 0 1px rgba(255,255,255,.2);
+    text-decoration: none;
+}
+
+#footer-wrapper #footer {
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #29568f;
+    text-align: center;
+}

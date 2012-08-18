@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    
+      <title>Создание системы комментариев на основе GitHub</title>
+    
+    <meta name="author" content="visconte"/>
+    <link href="http://feeds.feedburner.com/visconte" rel="alternate" title="visconte" type="application/atom+xml"/>
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection"/>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen, projection"/>
+    <!-- Syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/solarized.css" type="text/css"/>
+    <!-- Comments CSS -->
+    <link rel="stylesheet" href="/css/comments.css" type="text/css"/>
+    <!-- ColorBox CSS -->
+    <link rel="stylesheet" href="/css/colorbox.css" type="text/css"/>
+
+    <!-- Flattr button JavaScript -->
+    <script type="text/javascript">
+      /* <![CDATA[ */
+        (function() {
+          var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+          t.parentNode.insertBefore(s, t);
+        })();
+      /* ]]> */
+    </script>
+  </head>
+
+  <body>
+    <!-- Outer wrapper -->
+    <div id="outer-wrapper">
+      <!-- Header wrapper -->
+      <div id="header-wrapper">
+        <p><a class="title" href="/">Батискаф FuntooMacs</a></p>
+        <p class="description">Бортжурнал погружений в Funtoo, Emacs и другие субстанции</p>
+      </div>
+      <!-- end header wrapper -->
+
+      <!-- Crosscol wrapper -->
+      <div id="crosscol-wrapper">
+        <ul class="PageList">
+          <li id="homepage">
+            <a href="/">Главная</a>
+          </li>
+
+          <li id="rss">
+            <a href="http://feeds.feedburner.com/visconte">RSS</a>
+          </li>
+        </ul>
+      </div>
+      <!-- end crosscol wrapper -->
+
+      <!-- Main -->
+      <div id="main">
+        <h1>Создание системы комментариев на основе GitHub</h1>
+<p>07 May 2012</p>
+
+<!-- Flattr button -->
+<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="https://flattr.com/profile/visconte"></a>
+<noscript><a href="http://flattr.com/thing/715578/visconte-on-Flattr" target="_blank">
+    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+</a></noscript>
+
+<p>После того, как была <a href="/GitHub/2011/12/09/github-hosted-comments-features.html">описана</a> система комментариев на
+основе GitHub, возникает законный вопрос о том, как же её получить. В
+отличие от статических страниц <a href="http://pages.github.com/">GitHub Pages</a>, использование только
+<a href="https://github.com/mojombo/jekyll">Jekyll</a> для этих целей недостаточно. Нам понадобится сценарий
+JavaScript для загрузки и отображения комментариев, а также место для
+их хранения, в качестве которого используется <a href="https://github.com/blog/411-github-issue-tracker">Issue-трекер</a>
+GitHub.</p>
+
+<!--more-->
+
+<h3 id="section">Создание ветки комментариев</h3>
+
+<p>Создайте issue на Issue-трекере в репозитории блога для хранения
+комментариев к вашему посту. Например, <a href="https://github.com/visconte/visconte.github.com/issues/1">вот</a> issue для
+комментариев предыдущего поста, ссылка на который состоит из базового
+URL <code>https://github.com/visconte/visconte.github.com/issues/</code> и
+уникального id (<code>1</code> в данном примере). Данный issue используется
+читателями блога для отправки комментариев, что выглядит примерно так:</p>
+
+<p><a href="http://dl.dropbox.com/u/35307988/visconte.github.com/images/GitHub/issue-tracker-comments.png"><img src="http://dl.dropbox.com/u/35307988/visconte.github.com/images/GitHub/issue-tracker-comments.png" alt="" /></a></p>
+
+<p>После этого включите полученный id в <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML-заголовок</a> исходного
+текста поста, чтобы использовать его для загрузки комментариев на
+соответствующую страницу блога (значение id указано напротив
+<code>commentIssueId</code>):</p>
+
+<div class="highlight"><pre><code class="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;GitHub</span><span class="nv"> </span><span class="s">Pages:</span><span class="nv"> </span><span class="s">дальнейшая</span><span class="nv"> </span><span class="s">интеграция,</span><span class="nv"> </span><span class="s">или</span><span class="nv"> </span><span class="s">комментарии</span><span class="nv"> </span><span class="s">блога</span><span class="nv"> </span><span class="s">на</span><span class="nv"> </span><span class="s">GitHub&quot;</span>
+<span class="l-Scalar-Plain">commentIssueId</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+<span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">GitHub</span>
+<span class="nn">---</span>
+</code></pre>
+</div>
+
+<p>Вот фрагмент <a href="https://github.com/mojombo/jekyll/wiki/Usage">layout-файла</a>, генерирующего страницы блога
+(<code>post.html</code> в данном примере), с ссылкой на issue. Внутри неё
+используется <a href="https://github.com/mojombo/jekyll/wiki/Liquid-Extensions">Liquid-шаблон</a>, извлекающий id для issue (часть
+<code>page.commentIssueId</code>, заключённая в двойные фигурные скобки):</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;comments&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Отправить комментарий<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;p&gt;</span>
+    Комментарии блога предоставлены сервисом
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/&quot;</span><span class="nt">&gt;</span>GitHub<span class="nt">&lt;/a&gt;</span>.
+    Вы можете отправить комментарий с
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#discussion_bucket&quot;</span><span class="nt">&gt;</span>данной страницы<span class="nt">&lt;/a&gt;</span>
+    (необходима <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/signup/free&quot;</span><span class="nt">&gt;</span>регистрация на GitHub<span class="nt">&lt;/a&gt;</span>)
+    или связаться со мной по
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;user-email&quot;</span><span class="nt">&gt;</span>email<span class="nt">&lt;/a&gt;</span>.
+  <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="issue-">Загрузка комментариев с Issue-трекера</h3>
+
+<p>Добавим JavaScript сценарий, извлекающий комментарии к посту блога из
+соответствующего issue на GitHub. <a href="http://developer.github.com/v3/issues/">GitHub issues API</a> как раз то,
+что нам сейчас нужно &mdash; сделать XHR-запрос и получить все комментарии
+для конкретного issue. Для каждого комментария вы таким образом
+получаете id пользователя GitHub, что оставил данный комментарий, id
+его Gravatar-изображения; порядковый номер комментария на issue, время
+его создания и модификации, а также сам комментарий. Вот часть
+layout-файла, которая забирает комментарии поста посредством <a href="http://api.jquery.com/jQuery.ajax/">jQuery</a> (заметьте, что вам нужен Liquid-шаблон для определения ссылки на
+issue, чтобы извлекать оттуда комментарии):</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/repos/visconte/visconte.github.com/issues/{{ page.commentIssueId }}/comments&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span><span class="nx">Accept</span><span class="o">:</span> <span class="s1">&#39;application/vnd.github.html+json&#39;</span><span class="p">},</span>
+    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">comments</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">loadComments</span><span class="p">(</span><span class="nx">comments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<p>Подождите, разве не применяется <a href="http://ru.wikipedia.org/wiki/Правило_ограничения_домена">Правило ограничения домена</a> в
+случае XHR-запроса к GitHub API со страницы блога? Да, конечно
+применяется. И до недавнего времени, единственный способ обойти это
+ограничение состоял в использовании <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>. Однако, JSONP не
+позволяет изменять HTTP-заголовок запроса, что необходимо для задания
+требуемого <a href="http://developer.github.com/v3/mime/">Mime-типа</a> отклика GitHub API в заголовке <code>Accept</code>
+(смотри код выше). Но с недавних пор GitHub поддерживает
+<a href="http://www.w3.org/TR/cors/">спецификацию CORS</a>, позволяющую делать кросс-доменные запросы.
+Способ, которым <a href="http://developer.github.com/v3/#cross-origin-resource-sharing">GitHub API реализует CORS</a>, состоит в
+регистрации веб-сайтов как OAuth-приложений для доступа к API. Чтобы
+разрешить CORS блогу на GitHub, необходимо перейти к
+<a href="https://github.com/settings/applications/new">форме регистрации OAuth-приложений</a> и создать новое приложение,
+указав при этом URL блога в полях &laquo;Main URL&raquo; и &laquo;Callback URL&raquo;.
+Заметьте, что данный способ подходит (и остаётся неизменным) не только
+для блогов внутри доменной зоны GitHub (например,
+<code>visconte.github.com</code>), но и для блогов на GitHub, имеющих
+<a href="http://pages.github.com/#custom_domains">собственный домен</a>.</p>
+
+<p><a href="http://dl.dropbox.com/u/35307988/visconte.github.com/images/GitHub/github_oauth.png"><img src="http://dl.dropbox.com/u/35307988/visconte.github.com/images/GitHub/github_oauth.png" alt="" /></a></p>
+
+<h3 id="section-1">Отображение комментариев в блоге</h3>
+
+<p>Включим скачиваемые комментарии в layout-файл, генерирующий страницы
+постов. Например, вот мой код для вставки комментариев:</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">function</span> <span class="nx">loadComments</span><span class="p">(</span><span class="nx">comments</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">comments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">cuser</span> <span class="o">=</span> <span class="nx">comments</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">user</span><span class="p">.</span><span class="nx">login</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">cuserlink</span> <span class="o">=</span> <span class="s1">&#39;https://www.github.com/&#39;</span> <span class="o">+</span> <span class="nx">cuser</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">clink</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/visconte/visconte.github.com/issues/{{ page.commentIssueId }}#issuecomment-&#39;</span> <span class="o">+</span> <span class="nx">comments</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">cbody</span> <span class="o">=</span> <span class="nx">comments</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">body_html</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">cavatarlink</span> <span class="o">=</span> <span class="nx">comments</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">user</span><span class="p">.</span><span class="nx">avatar_url</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">cdate</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">comments</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">created_at</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="s2">&quot;MMMM d, yyyy HH:mm&quot;</span><span class="p">);</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#comments&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;\</span>
+<span class="s1">&lt;div class=&quot;comment&quot;&gt;\</span>
+<span class="s1">  &lt;div class=&quot;cmeta&quot;&gt;\</span>
+<span class="s1">    &lt;p class=&quot;author&quot;&gt;\</span>
+<span class="s1">      &lt;span class=&quot;gravatar&quot;&gt;&lt;img height=&quot;20&quot; width=&quot;20&quot; src=&quot;&#39;</span> <span class="o">+</span> <span class="nx">cavatarlink</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/span&gt;\</span>
+<span class="s1">      &lt;strong&gt;&lt;a href=&quot;&#39;</span> <span class="o">+</span> <span class="nx">cuserlink</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">cuser</span> <span class="o">+</span> <span class="s1">&#39;&lt;/a&gt;&lt;/strong&gt;\</span>
+<span class="s1">      &lt;a href=&quot;&#39;</span> <span class="o">+</span> <span class="nx">clink</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;комментирует&lt;/a&gt;\</span>
+<span class="s1">    &lt;/p&gt;\</span>
+<span class="s1">    &lt;p class=&quot;date&quot;&gt;&lt;a href=&quot;&#39;</span> <span class="o">+</span> <span class="nx">clink</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">cdate</span> <span class="o">+</span> <span class="s1">&#39;&lt;/a&gt; &lt;span class=&quot;icon&quot;&gt;&lt;/span&gt;&lt;/p&gt;\</span>
+<span class="s1">  &lt;/div&gt;\</span>
+<span class="s1">  &lt;div class=&quot;body&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">cbody</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;\</span>
+<span class="s1">&lt;/div&gt;&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<p>Для придания лучшего вида комментариям, мною используется
+<a href="http://www.datejs.com/">библиотека DateJS</a> для представления даты комментария, а к
+пользователям добавляются их Gravatar-изображения. Остаётся добавить
+CSS-правила для комментариев, чтобы получить следующий вид:</p>
+
+<p><a href="http://dl.dropbox.com/u/35307988/visconte.github.com/images/GitHub/blog-post-comments.png"><img src="http://dl.dropbox.com/u/35307988/visconte.github.com/images/GitHub/blog-post-comments.png" alt="" /></a></p>
+
+<p>Вот и всё! Создание системы комментариев было достаточно просто, ведь
+у GitHub уже есть все необходимые составляющие (Issue-трекер, GitHub
+API, регистрация OAuth-приложений), и всё, что нам было нужно &mdash; это
+немного клея, чтобы связать это воедино. Мне нравится, что система
+интегрируется с аккаунтами GitHub, комментарии блога можно видеть на
+страницах с issue, а также простота использования системы комментариев
+в целом. Весь код, что используется для системы комментариев, &mdash;
+единый layout-файл для постов блога и CSS-правила &mdash; вы найдёте
+<a href="https://gist.github.com/2595062">здесь</a>. Дайте мне знать, если вы обнаружите лучший способ для
+размещения комментариев блога на GitHub или найдёте, как улучшить
+этот.</p>
+
+<p><em>Прим.</em> Этот пост представляет собой близкое к оригиналу изложение
+поста <a href="http://ivanzuzak.info/2011/02/18/github-hosted-comments-for-github-hosted-blogs.html">GitHub hosted comments for GitHub hosted blogs</a>
+пользователя <a href="http://ivanzuzak.info/">Ivan Zuzak</a>. Выражаю глубокую признательность автору
+за проделанный труд.</p>
+
+
+<p><a href="#">Наверх</a></p>
+
+<div id="comments">
+  <h2>Отправить комментарий</h2>
+  <p>
+    Комментарии блога предоставлены
+    сервисом <a href="https://github.com/">GitHub</a>. Вы можете
+    отправить комментарий
+    с <a href="https://github.com/visconte/visconte.github.com/issues/2#discussion_bucket">данной страницы</a>
+    (необходима <a href="https://github.com/signup/free">регистрация
+    на GitHub</a>) или связаться со мной по <a href=""
+    class="user-email">email</a>.
+  </p>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
+<script type="text/javascript" src="/js/jquery.colorbox-min.js"></script>
+<script type="text/javascript">
+$.ajax('https://api.github.com/repos/visconte/visconte.github.com/issues/2/comments', {
+    dataType: 'json',
+    headers: { Accept: 'application/vnd.github.html+json' },
+    success: function(comments) {
+        loadComments(comments);
+    }
+});
+
+function loadComments(comments) {
+    for (var i=0; i<comments.length; i++) {
+        var cuser = comments[i].user.login;
+        var cuserlink = 'https://www.github.com/' + cuser;
+        var clink = 'https://github.com/visconte/visconte.github.com/issues/\
+2#issuecomment-' + comments[i].id;
+        var cbody = comments[i].body_html;
+        var cavatarlink = comments[i].user.avatar_url;
+        var cdate = Date.parse(comments[i].created_at).toString("MMMM d, yyyy HH:mm");
+
+        $('#comments').append('\
+<div class="comment">\
+  <div class="cmeta">\
+    <p class="author">\
+      <span class="gravatar"><img height="20" width="20" src="' + cavatarlink + '"></span>\
+      <strong><a href="' + cuserlink + '">' + cuser + '</a></strong>\
+      <a href="' + clink + '">комментирует</a>\
+    </p>\
+    <p class="date"><a href="' + clink + '">' + cdate + '</a> <span class="icon"></span></p>\
+  </div>\
+  <div class="body">' + cbody + '</div>\
+</div>')
+    }
+};
+
+function UserEmail() {
+    $.ajax('https://api.github.com/users/visconte', {
+        dataType: 'json',
+        success: function(info) {
+            mailtoUser(info);
+        }
+    });
+};
+
+function mailtoUser(info) {
+    var emaillink = 'mailto:' + info.email + '?subject=Создание системы комментариев на основе GitHub';
+    window.location.href = emaillink;
+};
+
+
+$(document).ready(function() {
+    $('a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".jpeg"]').colorbox();
+
+    $('a.user-email').click(function() {
+        UserEmail();
+        return false;
+    });
+});
+</script>
+
+<p><a href="#">Наверх</a></p>
+
+      </div>
+      <!-- end main -->
+
+      <!-- Footer wrapper -->
+      <div id="footer-wrapper">
+        <!-- Footer -->
+        <div id="footer">
+          <p>&copy; Copyright 2011&ndash;2012 by <strong>visconte</strong>.</p>
+
+          <p>
+            Content licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons attribution-noncommercial-sharealike License.</a>
+          </p>
+        </div> <!-- end footer -->
+      </div>
+      <!-- end footer wrapper -->
+    </div>
+    <!-- end outer wrapper -->
+  </body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    
+      <title>Установка Linux на компьютер с предустановленной Windows</title>
+    
+    <meta name="author" content="visconte"/>
+    <link href="http://feeds.feedburner.com/visconte" rel="alternate" title="visconte" type="application/atom+xml"/>
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection"/>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen, projection"/>
+    <!-- Syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/solarized.css" type="text/css"/>
+    <!-- Comments CSS -->
+    <link rel="stylesheet" href="/css/comments.css" type="text/css"/>
+    <!-- ColorBox CSS -->
+    <link rel="stylesheet" href="/css/colorbox.css" type="text/css"/>
+
+    <!-- Flattr button JavaScript -->
+    <script type="text/javascript">
+      /* <![CDATA[ */
+        (function() {
+          var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+          t.parentNode.insertBefore(s, t);
+        })();
+      /* ]]> */
+    </script>
+  </head>
+
+  <body>
+    <!-- Outer wrapper -->
+    <div id="outer-wrapper">
+      <!-- Header wrapper -->
+      <div id="header-wrapper">
+        <p><a class="title" href="/">Батискаф FuntooMacs</a></p>
+        <p class="description">Бортжурнал погружений в Funtoo, Emacs и другие субстанции</p>
+      </div>
+      <!-- end header wrapper -->
+
+      <!-- Crosscol wrapper -->
+      <div id="crosscol-wrapper">
+        <ul class="PageList">
+          <li id="homepage">
+            <a href="/">Главная</a>
+          </li>
+
+          <li id="rss">
+            <a href="http://feeds.feedburner.com/visconte">RSS</a>
+          </li>
+        </ul>
+      </div>
+      <!-- end crosscol wrapper -->
+
+      <!-- Main -->
+      <div id="main">
+        <h1>Установка Linux на компьютер с предустановленной Windows</h1>
+<p>23 Jun 2012</p>
+
+<!-- Flattr button -->
+<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="https://flattr.com/profile/visconte"></a>
+<noscript><a href="http://flattr.com/thing/715578/visconte-on-Flattr" target="_blank">
+    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+</a></noscript>
+
+<p>Сегодня многие компьютеры и ноутбуки попадают в руки поклонников Linux
+с предустановленной Windows, любезно предоставленной
+заводом-изготовителем. Возникает дилемма: удалять или не удалять, и
+способ установки уже любимой OS зависит от её решения. Как правило,
+изготовитель заранее побеспокоился о том, чтобы установка
+дополнительной OS доставила вам множество незабываемых минут, часов,
+дней и прочих радостей. Труден путь тех, кто не решился стереть все
+воспоминания о Windows с диска, но дорогу осилит идущий.</p>
+
+<!--more-->
+
+<h3 id="section">Подготовка разделов диска</h3>
+
+<p>Способов установки дополнительной системы к Windows мало, поскольку
+последняя поддерживает только таблицу разделов <a href="http://ru.wikipedia.org/wiki/Главная_загрузочная_запись">MBR</a>, возможности
+которой ограничены 4 первичными разделами или 3 первичными и одним
+расширенным. Как правило, три первичных раздела уже задействованы:
+один &mdash; под восстановление системы, и ещё два &mdash; под Windows. Мы же
+силами Linux LiveCD и редактора разделов Gparted подвинем полномочия
+Windows, уменьшив его раздел, а на освободившемся пространстве
+создадим расширенный (Extended) раздел под Linux. Предварительно,
+полезно ознакомиться с тем, как правильно <a href="http://www.linux.org.ru/wiki/en/Выравнивание_разделов_диска">выравнивать разделы диска</a>. Для Linux желательно создавать не менее трёх логических
+разделов: подкачки (swap), корневой и под домашний каталог.</p>
+
+<p><a href="http://dl.dropbox.com/u/35307988/visconte.github.com/images/Linux/gparted-partition-table.png"><img src="http://dl.dropbox.com/u/35307988/visconte.github.com/images/Linux/gparted-partition-table.png" alt="" /></a></p>
+
+<h3 id="section-1">Установка загрузчика</h3>
+
+<p>Можно было бы поместить загрузчик Grub на один из Windows-разделов,
+если бы не неприкрытая любовь MicroSoft к NTFS. Для Grub эта файловая
+система не подходит, поэтому установите Grub в корневой раздел Linux и
+скопируйте файл настройки (<code>/boot/grub/grub.cfg</code> для Grub 2) в место,
+доступное из-под Windows. BIOS будет передавать управление Windows, а
+уже потом будет грузиться Grub. Однако, Windows не обладает
+способностью грузить разделы с файловыми системами Linux. Нам нужен
+посредник, для чего можно воспользоваться проектом <a href="http://sourceforge.net/projects/grub4dos/">Grub For DOS</a> или <a href="http://sourceforge.net/projects/grub24dos/">Grub 2 For DOS</a>. Оба они равноправны,
+первый создан на основе Grub, второй &mdash; на основе Grub 2. Об
+использовании Grub For DOS очень обстоятельно рассказано <a href="http://ru.d-ws.biz/articles/install-ubuntu-from-flash-on-s205.shtml">здесь</a>, ну а для пользователей дистрибутивов на основе Grub 2
+настоящей находкой является Grub 2 For DOS, о котором и пойдёт речь
+дальше.</p>
+
+<p>Установка Grub 2 For DOS очень проста: скачайте архив с сайта и
+распакуйте в корень Windows-раздела (обычно, это диск <code>C</code>), там должна
+появиться папка <code>grub</code>. Запустите <code>C:\grub\install\grub24dos.exe</code> и
+выполните его настройку, после этого инсталлятор добавит новую запись
+&laquo;Grub 2 For DOS&raquo; в меню загрузки Windows. Для наших целей достаточно
+выставить &laquo;Windows boot timeout&raquo;, остальные данные продублируйте из
+своего дистрибутива, поместив сохранённый <code>grub.cfg</code> в <code>C:\grub</code>.
+Теперь выбор &laquo;Grub 2 For DOS&raquo; в меню загрузки перенесёт вас в Grub
+2.</p>
+
+<p><em>Прим. При любых изменениях, вносимых в конфигурацию Grub 2, не
+забывайте обновлять меню, подкладывая Grub 2 For DOS изменённый
+<code>grub.cfg</code>.</em></p>
+
+<h3 id="bcd">Ручная настройка BCD</h3>
+
+<p>Наверняка вам известно, что для загрузки, начиная с Windows Vista,
+используется <a href="http://en.wikipedia.org/wiki/Windows_Vista_startup_process#Boot_Configuration_Data">Boot Configuration Data</a> (BCD), которую
+модифицирует Grub 2 For DOS. Для тонкой настройки меню загрузки
+предназначена специальная утилита <strong>bcdedit</strong>. Желательно перед любыми
+изменениями создавать резервную копию BCD в соответствии с
+<a href="http://sourcedaddy.com/windows-7/how-to-back-up-and-restore-settings.html">инструкцией</a>.</p>
+
+<p>С помощью строки поиска в главном меню Windows найдите интерпретатор
+командной строки <code>cmd</code> и выберите вариант запуска &laquo;Run as
+administrator&raquo;. Используя подробную справку <code>bcdedit /v</code> по записям в
+BCD, каждой из которых соответствует уникальный GIUD, найдите &laquo;Grub 2
+For DOS&raquo;. Можно выставить &laquo;Grub 2 For DOS&raquo; первым в меню</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/displayorder</span> {GUID} <span class="n">/addfirst</span>
+</code></pre>
+</div>
+
+<p>а также сделать пунктом по умолчанию</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/default</span> {GUID}
+</code></pre>
+</div>
+
+<p>Дальнейшее описывает шаги по созданию записи &laquo;Grub 2 For DOS&raquo; с нуля
+на тот случай, если вы пожелаете это сделать самостоятельно. Новая
+запись в BCD создаётся командой</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/set</span> {GUID} path \grub\winloader\grub.boot
+</code></pre>
+</div>
+
+<p>После этого будет отображен GUID новой записи, который нужно
+подставлять в следующих командах. Укажем раздел, на котором находится
+Grub 2 For DOS</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/set</span> {GUID} device partition<span class="o">=</span>C:
+</code></pre>
+</div>
+
+<p>и местоположение загрузчика</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/set</span> {GUID} path \grub\winloader\grub.boot
+</code></pre>
+</div>
+
+<p>Новая запись будет добавлена в меню загрузки только после выполнения
+команды</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/displayorder</span> {GUID} <span class="n">/addfirst</span>
+</code></pre>
+</div>
+
+<p>Если <code>/addfirst</code> заменить на <code>/addlast</code>, то новая запись будет
+добавлена в меню загрузки не первой, а последней. Остаётся сделать
+запись выбором по умолчанию</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/default</span> {GUID}
+</code></pre>
+</div>
+
+<p>и установить время ожидания меню</p>
+
+<div class="highlight"><pre><code class="bat">bcdedit <span class="n">/timeout</span> <span class="m">5</span>
+</code></pre>
+</div>
+
+
+<p><a href="#">Наверх</a></p>
+
+<div id="comments">
+  <h2>Отправить комментарий</h2>
+  <p>
+    Комментарии блога предоставлены
+    сервисом <a href="https://github.com/">GitHub</a>. Вы можете
+    отправить комментарий
+    с <a href="https://github.com/visconte/visconte.github.com/issues/3#discussion_bucket">данной страницы</a>
+    (необходима <a href="https://github.com/signup/free">регистрация
+    на GitHub</a>) или связаться со мной по <a href=""
+    class="user-email">email</a>.
+  </p>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date-ru-RU.js"></script>
+<script type="text/javascript" src="/js/jquery.colorbox-min.js"></script>
+<script type="text/javascript">
+$.ajax('https://api.github.com/repos/visconte/visconte.github.com/issues/3/comments', {
+    dataType: 'json',
+    headers: { Accept: 'application/vnd.github.html+json' },
+    success: function(comments) {
+        loadComments(comments);
+    }
+});
+
+function loadComments(comments) {
+    for (var i=0; i<comments.length; i++) {
+        var cuser = comments[i].user.login;
+        var cuserlink = 'https://www.github.com/' + cuser;
+        var clink = 'https://github.com/visconte/visconte.github.com/issues/\
+3#issuecomment-' + comments[i].id;
+        var cbody = comments[i].body_html;
+        var cavatarlink = comments[i].user.avatar_url;
+        var cdate = Date.parse(comments[i].created_at).toString("MMMM d, yyyy HH:mm");
+
+        $('#comments').append('\
+<div class="comment">\
+  <div class="cmeta">\
+    <p class="author">\
+      <span class="gravatar"><img height="20" width="20" src="' + cavatarlink + '"></span>\
+      <strong><a href="' + cuserlink + '">' + cuser + '</a></strong>\
+      <a href="' + clink + '">комментирует</a>\
+    </p>\
+    <p class="date"><a href="' + clink + '">' + cdate + '</a> <span class="icon"></span></p>\
+  </div>\
+  <div class="body">' + cbody + '</div>\
+</div>')
+    }
+};
+
+function UserEmail() {
+    $.ajax('https://api.github.com/users/visconte', {
+        dataType: 'json',
+        success: function(info) {
+            mailtoUser(info);
+        }
+    });
+};
+
+function mailtoUser(info) {
+    var emaillink = 'mailto:' + info.email + '?subject=Установка Linux на компьютер с предустановленной Windows';
+    window.location.href = emaillink;
+};
+
+
+$(document).ready(function() {
+    $('a[href$=".png"], a[href$=".gif"], a[href$=".jpg"], a[href$=".jpeg"]').colorbox();
+
+    $('a.user-email').click(function() {
+        UserEmail();
+        return false;
+    });
+});
+</script>
+
+<p><a href="#">Наверх</a></p>
+
+      </div>
+      <!-- end main -->
+
+      <!-- Footer wrapper -->
+      <div id="footer-wrapper">
+        <!-- Footer -->
+        <div id="footer">
+          <p>&copy; Copyright 2011&ndash;2012 by <strong>visconte</strong>.</p>
+
+          <p>
+            Content licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons attribution-noncommercial-sharealike License.</a>
+          </p>
+        </div> <!-- end footer -->
+      </div>
+      <!-- end footer wrapper -->
+    </div>
+    <!-- end outer wrapper -->
+  </body>
+</html>
