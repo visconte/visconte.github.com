@@ -74,6 +74,7 @@ table td {
     padding: .2em 1em;
 }
 pre {
+    font-family: Inconsolata, Courier New, Courier, monospace;
     background-color: #eee;
     border: 1px solid #ddd;
     margin-bottom: 1em;
@@ -114,8 +115,7 @@ pre code {
     white-space: pre !important;
 }
 code {
-    font-family: Consolas, Courier New, Courier, monospace;
-    font-size: 17px;
+    font-family: Inconsolata, Courier New, Courier, monospace;
     color: #444;
     padding: 0 .2em;
     background-color: #f8f8f8;
