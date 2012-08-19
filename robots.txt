@@ -1,0 +1,7 @@
+User-Agent: *
+Disallow: /atom.xml
+Disallow: /README
+Disallow: /css/
+Disallow: /images/
+Disallow: /js/
+Sitemap: http://visconte.github.com/sitemap.xml
