@@ -1,5 +1,9 @@
+.bundle/
 _plugins/
 draft/
 org/
 others/
 temp/
+vendor/
+Gemfile*
+.rvmrc
