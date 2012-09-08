@@ -4,4 +4,4 @@ url: http://visconte.github.com
 imgdir: http://dl.dropbox.com/u/35307988/visconte.github.com/images
 markdown: kramdown
 pygments: yes
-exclude: ['others']
+exclude: ['.bundle', 'draft', 'others', 'temp', 'vendor', 'Gemfile', 'Gemfile.lock']
