@@ -2,12 +2,6 @@
    dark-blue: #29568f    blue: #4771a5    light-blue: #96b1d2
    */
 * {margin: 0; padding: 0;}
-h1, h2, h3, h4, h5, h6 {
-    padding-top: .25em;
-    padding-bottom: .25em;
-    font-style: italic;
-    color: #4771a5;
-}
 a {
     color: #29568f;
     outline: none;
