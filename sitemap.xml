@@ -2,11 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://visconte.github.com/</loc>
-    <lastmod>2012-08-19</lastmod>
+    <lastmod>2012-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://visconte.github.com/2012/09/08/goodbye-blog.html</loc>
+    <lastmod>2012-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   
   <url>
     <loc>http://visconte.github.com/Linux/2012/06/23/booting-linux-from-windows.html</loc>
